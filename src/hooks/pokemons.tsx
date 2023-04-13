@@ -4,22 +4,11 @@ import {useMemo} from 'react';
 import {objectToQuery} from '../utils/object';
 import {API} from '../../config';
 
-type Pokemon = {
-  id: number;
-  name: string;
-};
-
 type ReturnProps = {
   pokemons: Pokemon[];
   loading: boolean;
   error: any;
 };
-interface PokemonResponse<T> {
-  count: number;
-  next: string;
-  previus: string | null;
-  results: T;
-}
 
 const DEFAULT_RETURN = {
   pokemons: [],
