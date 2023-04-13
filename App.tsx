@@ -5,18 +5,20 @@ import {
   StatusBar,
   View,
 } from 'react-native';
-import {QueryClientProvider, QueryClient} from '@tanstack/react-query';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+import {ThemeProvider} from 'styled-components/native';
 import React from 'react';
 
+import {lightTheme} from './src/styles/light-theme';
 import {Pokemons} from './src/containers/pokemons';
 import {Avatar} from './src/components/avatar';
+import theme from './src/styles/theme';
 
 const queryClient = new QueryClient();
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -33,13 +35,19 @@ function App(): JSX.Element {
         <Header />
         <View
           style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            backgroundColor: isDarkMode
+              ? theme.colors.background
+              : lightTheme.colors.background,
           }}>
           <QueryClientProvider client={queryClient}>
-            <Avatar
-              imageSrc={'https://avatars.githubusercontent.com/u/45147892?v=4'}
-            />
-            <Pokemons />
+            <ThemeProvider theme={isDarkMode ? theme : lightTheme}>
+              <Avatar
+                imageSrc={
+                  'https://avatars.githubusercontent.com/u/45147892?v=4'
+                }
+              />
+              <Pokemons />
+            </ThemeProvider>
           </QueryClientProvider>
         </View>
       </ScrollView>
