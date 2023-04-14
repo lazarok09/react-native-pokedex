@@ -6,10 +6,21 @@ const theme = {
   },
   typography: {
     sizes: {
-      small: '13px',
-      medium: '15px',
-      large: '20px',
-      xlarge: '24px',
+      small: '16px',
+      medium: '20px',
+      large: '26px',
+      xlarge: '32px',
+      xxlarge: '38px',
+      huge: '48px',
+      xhuge: '54px',
+      xxhuge: '60px',
+    },
+  },
+  box: {
+    radius: {
+      small: '12px',
+      medium: '25px',
+      huge: '30px',
     },
   },
 };
