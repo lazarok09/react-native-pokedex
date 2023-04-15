@@ -1,4 +1,3 @@
-import {View} from 'react-native';
 import React from 'react';
 
 import * as Styled from './styles';
@@ -24,10 +23,8 @@ type BoxProps = {
 
 export const ColorizedBox = ({text, color}: BoxProps) => {
   return (
-    <View>
-      <Styled.Box backgroundColor={COLORS[color]}>
-        <Styled.Title>{text}</Styled.Title>
-      </Styled.Box>
-    </View>
+    <Styled.Box backgroundColor={COLORS[color]}>
+      <Styled.Title>{text}</Styled.Title>
+    </Styled.Box>
   );
 };

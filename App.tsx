@@ -11,8 +11,8 @@ import {ThemeProvider} from 'styled-components/native';
 import React from 'react';
 
 import {lightTheme} from './src/styles/light-theme';
-import {ColorizedBox} from './src/components/box';
 import {Avatar} from './src/components/avatar';
+import {Home} from './src/templates/Home';
 import theme from './src/styles/theme';
 
 const queryClient = new QueryClient();
@@ -46,7 +46,7 @@ function App(): JSX.Element {
                   'https://avatars.githubusercontent.com/u/45147892?v=4'
                 }
               />
-              <ColorizedBox color="green" text={'Pokémon'} />
+              <Home />
             </ThemeProvider>
           </QueryClientProvider>
         </View>

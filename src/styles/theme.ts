@@ -2,7 +2,7 @@ const theme = {
   colors: {
     primary: '#b3a222',
     secondary: '#53a222',
-    background: '#000000',
+    background: 'rgba(255 0 255 / 1.0)',
   },
   typography: {
     sizes: {
@@ -21,6 +21,11 @@ const theme = {
       small: '12px',
       medium: '25px',
       huge: '30px',
+    },
+    gaps: {
+      small: '12px',
+      medium: '16px',
+      large: '18px',
     },
   },
 };

@@ -10,7 +10,6 @@ export const Box = styled.TouchableOpacity<Props>`
     height: 200px;
     background-color: ${backgroundColor};
     border-radius: ${theme.box.radius.medium};
-    display: flex;
     justify-content: flex-end;
   `}
 `;
@@ -19,7 +18,6 @@ export const Title = styled.Text`
     font-size: ${theme.typography.sizes.huge};
     font-weight: 900;
     font-family: 'Roboto';
-    display: flex;
     flex-direction: column;
     justify-self: flex-end;
     color: #fefefe;
