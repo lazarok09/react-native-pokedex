@@ -1,16 +1,8 @@
-import {
-  useColorScheme,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  View,
-} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {ThemeProvider} from 'styled-components/native';
 import React from 'react';
 
-import {lightTheme} from './src/styles/light-theme';
 import {Avatar} from './src/components/avatar';
 import {Home} from './src/templates/Home';
 import theme from './src/styles/theme';
@@ -18,29 +10,23 @@ import theme from './src/styles/theme';
 const queryClient = new QueryClient();
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: theme.colors.background,
+    backgroundStyle: 'flex: 1',
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        barStyle={'light-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode
-              ? theme.colors.background
-              : lightTheme.colors.background,
-          }}>
+        <View>
           <QueryClientProvider client={queryClient}>
-            <ThemeProvider theme={isDarkMode ? theme : lightTheme}>
+            <ThemeProvider theme={theme}>
               <Avatar
                 imageSrc={
                   'https://avatars.githubusercontent.com/u/45147892?v=4'
