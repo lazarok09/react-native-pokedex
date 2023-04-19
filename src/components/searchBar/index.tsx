@@ -1,8 +1,8 @@
 import Icon from 'react-native-vector-icons/EvilIcons';
-import {StyleSheet} from 'react-native';
-import {Text} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import React from 'react';
 
+import theme from '../../styles/theme';
 import * as Styled from './styles';
 
 // https://oblador.github.io/react-native-vector-icons/
@@ -11,8 +11,8 @@ export const SearchBar = () => {
   return (
     <Styled.Wrapper>
       <Styled.CustomTextInput placeholder="Search pokemons, items e etc." />
-      <Text>
-        <Icon name="search" size={50} color={'#c23c00'} />;
+      <Text style={styles.searchIcon}>
+        <Icon name="search" size={45} color={theme.colors.text_03} />;
       </Text>
     </Styled.Wrapper>
   );
@@ -20,9 +20,9 @@ export const SearchBar = () => {
 
 const styles = StyleSheet.create({
   searchIcon: {
-    padding: 10,
+    padding: 0,
     position: 'absolute',
-
-    left: 0,
+    bottom: 11,
+    left: 11,
   },
 });

@@ -3,6 +3,8 @@ const theme = {
     primary: '#b3a222',
     secondary: '#53a222',
     background: 'rgba(255 0 255 / 1.0)',
+    text_01: '#FFFFFF',
+    text_03: '#858585',
   },
   typography: {
     sizes: {

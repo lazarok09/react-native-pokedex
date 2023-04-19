@@ -19,5 +19,6 @@ export const CustomTextInput = styled.TextInput.attrs(() => ({
     color: #a9a9a9;
     background: #141414;
     font-size: 16px;
+    padding-left: 60px;
   `}
 `;
