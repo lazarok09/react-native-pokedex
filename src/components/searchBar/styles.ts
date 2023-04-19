@@ -19,17 +19,5 @@ export const CustomTextInput = styled.TextInput.attrs(() => ({
     color: #a9a9a9;
     background: #141414;
     font-size: 16px;
-    position: relative;
-    ::before {
-      content: '';
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 24px;
-      height: 24px;
-      background-color: transparent;
-      z-index: 1;
-    }
   `}
 `;
