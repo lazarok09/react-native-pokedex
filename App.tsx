@@ -1,47 +1,38 @@
-import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {NavigationContainer} from '@react-navigation/native';
 import {ThemeProvider} from 'styled-components/native';
-import {StyleSheet} from 'react-native';
+import {StatusBar} from 'react-native';
+import 'react-native-gesture-handler';
 import React from 'react';
 
-import {Avatar} from './src/components/avatar';
-import {Home} from './src/templates/Home';
+import HomeScreen from './src/screens/Home';
 import theme from './src/styles/theme';
 
 const queryClient = new QueryClient();
+const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView style={styles.container}>
+    <NavigationContainer>
       <StatusBar
         barStyle={'light-content'}
         backgroundColor={theme.colors.background}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}>
-        <View>
-          <QueryClientProvider client={queryClient}>
-            <ThemeProvider theme={theme}>
-              <Avatar
-                imageSrc={
-                  'https://avatars.githubusercontent.com/u/45147892?v=4'
-                }
-              />
-              <Home />
-            </ThemeProvider>
-          </QueryClientProvider>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+            initialRouteName="Home">
+            <Stack.Screen name="Home" component={HomeScreen} />
+          </Stack.Navigator>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </NavigationContainer>
   );
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollView: {
-    backgroundColor: theme.colors.background,
-  },
-});
+
 export default App;
