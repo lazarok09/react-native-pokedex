@@ -1,3 +1,5 @@
+import {ScrollView} from 'react-native-gesture-handler';
+import {SafeAreaView} from 'react-native';
 import {View, Text} from 'react-native';
 import React from 'react';
 
@@ -25,11 +27,13 @@ export const Pokemons = () => {
 
     if (pokemons?.length >= 1) {
       return (
-        <View>
-          {pokemons.map((pokemon, index) => (
-            <Pokemon key={index} name={pokemon.name} id={pokemon.id} />
-          ))}
-        </View>
+        <SafeAreaView>
+          <ScrollView>
+            {pokemons.map((pokemon, index) => (
+              <Pokemon key={index} name={pokemon.name} id={pokemon.id} />
+            ))}
+          </ScrollView>
+        </SafeAreaView>
       );
     }
     return (

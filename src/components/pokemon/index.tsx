@@ -26,7 +26,6 @@ export const Pokemon = ({name}: PokemonProps) => {
 
 const styles = StyleSheet.create({
   alignCenter: {
-    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
