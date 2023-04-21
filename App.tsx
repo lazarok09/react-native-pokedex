@@ -6,11 +6,17 @@ import {StatusBar} from 'react-native';
 import 'react-native-gesture-handler';
 import React from 'react';
 
+import PokemonsScreen from './src/screens/Pokemons';
 import HomeScreen from './src/screens/Home';
 import theme from './src/styles/theme';
 
+export type StackParamList = {
+  Home: undefined;
+  Pokemons: undefined;
+};
+
 const queryClient = new QueryClient();
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<StackParamList>();
 
 function App(): JSX.Element {
   return (
@@ -28,6 +34,7 @@ function App(): JSX.Element {
             }}
             initialRouteName="Home">
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Pokemons" component={PokemonsScreen} />
           </Stack.Navigator>
         </ThemeProvider>
       </QueryClientProvider>

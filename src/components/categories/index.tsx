@@ -3,19 +3,43 @@ import React from 'react';
 import {ColorizedBox} from '../box';
 import * as Styled from './styles';
 
-export const Categories = () => {
+type CategoriesProps = {
+  handleOnPressOut: () => void;
+};
+export const Categories = (props: CategoriesProps) => {
+  const {handleOnPressOut} = props;
   return (
     <Styled.Wrapper>
       <Styled.Item>
-        <ColorizedBox color="green" text="Pokémon" />
+        <ColorizedBox
+          handleOnPressOut={handleOnPressOut}
+          color="green"
+          text="Pokémon"
+        />
       </Styled.Item>
       <Styled.DoubleItems>
-        <ColorizedBox color="tomato" text="Items" />
-        <ColorizedBox color="blue" text="Moves" />
+        <ColorizedBox
+          handleOnPressOut={handleOnPressOut}
+          color="tomato"
+          text="Items"
+        />
+        <ColorizedBox
+          handleOnPressOut={handleOnPressOut}
+          color="blue"
+          text="Moves"
+        />
       </Styled.DoubleItems>
       <Styled.DoubleItems>
-        <ColorizedBox color="yellow" text="Types" />
-        <ColorizedBox color="purple" text="Favorite" />
+        <ColorizedBox
+          handleOnPressOut={handleOnPressOut}
+          color="yellow"
+          text="Types"
+        />
+        <ColorizedBox
+          handleOnPressOut={handleOnPressOut}
+          color="purple"
+          text="Favorite"
+        />
       </Styled.DoubleItems>
     </Styled.Wrapper>
   );

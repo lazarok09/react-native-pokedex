@@ -1,14 +1,19 @@
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {StyleSheet} from 'react-native';
 import {View} from 'react-native';
 import React from 'react';
 
+import {StackParamList} from '../../App';
 import {Home} from '../templates/Home';
 import theme from '../styles/theme';
 
-const HomeScreen = () => {
+export type HomeScreenProps = NativeStackScreenProps<StackParamList>;
+
+const HomeScreen = (props: HomeScreenProps) => {
+  const {navigation} = props;
   return (
     <View style={styles.container}>
-      <Home />
+      <Home navigation={navigation} />
     </View>
   );
 };

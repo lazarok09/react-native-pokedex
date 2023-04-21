@@ -19,11 +19,12 @@ const COLORS: ColorsSwitch = {
 type BoxProps = {
   text: string;
   color: Colors;
+  handleOnPressOut: () => void;
 };
 
-export const ColorizedBox = ({text, color}: BoxProps) => {
+export const ColorizedBox = ({text, color, handleOnPressOut}: BoxProps) => {
   return (
-    <Styled.Box backgroundColor={COLORS[color]}>
+    <Styled.Box onPress={handleOnPressOut} backgroundColor={COLORS[color]}>
       <Styled.Title>{text}</Styled.Title>
     </Styled.Box>
   );
