@@ -27,7 +27,7 @@ const theme = {
     gaps: {
       small: '12px',
       medium: '16px',
-      large: '18px',
+      large: '24px',
       xlarge: '32px',
     },
   },
