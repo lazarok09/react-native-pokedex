@@ -1,6 +1,7 @@
 import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {ThemeProvider} from 'styled-components/native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 
 import {Avatar} from './src/components/avatar';
@@ -10,20 +11,15 @@ import theme from './src/styles/theme';
 const queryClient = new QueryClient();
 
 function App(): JSX.Element {
-  const backgroundStyle = {
-    backgroundColor: theme.colors.background,
-    backgroundStyle: 'flex: 1',
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         barStyle={'light-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        backgroundColor={theme.colors.background}
       />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+        style={styles.scrollView}>
         <View>
           <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={theme}>
@@ -40,5 +36,12 @@ function App(): JSX.Element {
     </SafeAreaView>
   );
 }
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollView: {
+    backgroundColor: theme.colors.background,
+  },
+});
 export default App;
