@@ -6,8 +6,9 @@ import * as Styled from './styles';
 export const Categories = () => {
   return (
     <Styled.Wrapper>
-      <ColorizedBox color="green" text="Pokémon" />
-
+      <Styled.Item>
+        <ColorizedBox color="green" text="Pokémon" />
+      </Styled.Item>
       <Styled.DoubleItems>
         <ColorizedBox color="tomato" text="Items" />
         <ColorizedBox color="blue" text="Moves" />

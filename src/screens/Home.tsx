@@ -16,9 +16,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-  },
-  scrollView: {
+
     backgroundColor: theme.colors.background,
   },
 });
