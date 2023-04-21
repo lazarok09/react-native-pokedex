@@ -13,20 +13,22 @@ type HeadingProps = {
 export const Heading = ({as, children}: HeadingProps) => {
   return (
     <View>
-      <Text style={[styles[as], styles.color]}>{children}</Text>
+      <Text style={[styles[as], styles.commonStyles]}>{children}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  color: {
+  commonStyles: {
     color: theme.colors.text_01,
+    fontWeight: '700',
   },
+
   h1: {
-    fontSize: 60,
+    fontSize: 72,
   },
   h2: {
-    fontSize: 54,
+    fontSize: 64,
   },
   h3: {
     fontSize: 48,

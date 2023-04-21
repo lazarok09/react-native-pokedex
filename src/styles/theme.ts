@@ -28,6 +28,7 @@ const theme = {
       small: '12px',
       medium: '16px',
       large: '18px',
+      xlarge: '32px',
     },
   },
 };
