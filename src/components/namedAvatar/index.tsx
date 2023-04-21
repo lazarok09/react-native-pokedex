@@ -1,19 +1,17 @@
 import {View, Text, Image, StyleSheet} from 'react-native';
 import React from 'react';
 
-import {getPokemonImgSrc} from '../../utils/pokemon';
-
-type PokemonProps = {
+export type NamedAvatarProps = {
   name: string;
-  id: number;
+  url: string;
 };
-export const Pokemon = ({name}: PokemonProps) => {
+export const NamedAvatar = ({name, url}: NamedAvatarProps) => {
   return (
     <View style={styles.alignCenter}>
       <Image
         style={styles.picture}
         source={{
-          uri: getPokemonImgSrc(name),
+          uri: url,
           cache: 'force-cache',
           height: 220,
           width: 440,
@@ -30,8 +28,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   picture: {
-    height: 200,
-    width: 200,
+    height: 250,
+    width: 310,
     borderRadius: 200 / 2,
   },
 });

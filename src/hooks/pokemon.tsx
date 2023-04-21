@@ -1,7 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
 import {useMemo} from 'react';
 
-import {objectToQuery} from '../utils/object';
 import {API} from '../../config';
 
 type ReturnProps = {
@@ -16,15 +15,11 @@ const DEFAULT_RETURN = {
   error: null,
 };
 
-const usePokemons = (limit = 20): ReturnProps => {
-  const URL = `${API}/pokemon${objectToQuery({
-    limit,
-  })}`;
+const usePokemon = (name: string): ReturnProps => {
+  const URL = `${API}/pokemon/${name}`;
 
-  const {data, isLoading, isError} = useQuery<
-    PokemonResponse<ReturnProps['pokemons']>
-  >({
-    queryKey: ['pokemonsData'],
+  const {data, isLoading, isError} = useQuery<ReturnProps['pokemons']>({
+    queryKey: [`pokemons-${name}`],
     queryFn: () => fetch(URL).then(res => res.json()),
   });
 
@@ -33,10 +28,10 @@ const usePokemons = (limit = 20): ReturnProps => {
       return DEFAULT_RETURN;
     }
 
-    return {pokemons: data.results, loading: isLoading, error: isError};
+    return {pokemons: data, loading: isLoading, error: isError};
   }, [data, isLoading, isError]);
 
   return memoizedData;
 };
 
-export default usePokemons;
+export default usePokemon;

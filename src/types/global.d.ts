@@ -1,6 +1,6 @@
-declare interface Pokemon {
-  id: number;
+declare interface SearchedPokemons {
   name: string;
+  url: string;
 }
 
 declare interface PokemonResponse<T> {
