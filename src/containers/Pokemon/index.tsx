@@ -3,10 +3,20 @@ import React from 'react';
 import {NamedAvatarProps} from '../../components/namedAvatar';
 import {getPokemonImgSrcByName} from '../../utils/pokemon';
 import {NamedAvatar} from '../../components/namedAvatar';
+import usePokemon from '../../hooks/pokemon';
 
 type PokemonContainerProps = Pick<NamedAvatarProps, 'name'>;
 export const Pokemon = (props: PokemonContainerProps) => {
-  return (
-    <NamedAvatar name={props.name} url={getPokemonImgSrcByName(props.name)} />
-  );
+  const {pokemon} = usePokemon(props.name);
+
+  function getPokemonImageSRC() {
+    if (Object.keys(pokemon).length > 0) {
+      const hasABetterImage = !!pokemon.sprites.back_default.length;
+      if (hasABetterImage) {
+        return pokemon.sprites.back_default;
+      }
+    }
+    return getPokemonImgSrcByName(props.name);
+  }
+  return <NamedAvatar name={props.name} url={getPokemonImageSRC()} />;
 };
