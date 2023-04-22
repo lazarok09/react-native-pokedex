@@ -3,7 +3,6 @@ import {StyleSheet} from 'react-native';
 import {View} from 'react-native';
 import React from 'react';
 
-import {Pokemon} from '../containers/Pokemon';
 import {StackParamList} from '../../App';
 import {Home} from '../templates/Home';
 import theme from '../styles/theme';
@@ -15,7 +14,6 @@ const HomeScreen = (props: HomeScreenProps) => {
   return (
     <View style={styles.container}>
       <Home navigation={navigation} />
-      <Pokemon name="charizard" />
     </View>
   );
 };
