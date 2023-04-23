@@ -1,11 +1,12 @@
 import React from 'react';
 
-import {NamedAvatarProps} from '../../components/namedAvatar';
 import {getPokemonImgSrcByName} from '../../utils/pokemon';
-import {NamedAvatar} from '../../components/namedAvatar';
+import {PokeImage} from '../../components/PokeImage';
 import usePokemon from '../../hooks/pokemon';
 
-type PokemonContainerProps = Pick<NamedAvatarProps, 'name'>;
+type PokemonContainerProps = {
+  name: string;
+};
 
 export const Pokemon = (props: PokemonContainerProps) => {
   const {pokemon} = usePokemon(props.name);
@@ -19,5 +20,5 @@ export const Pokemon = (props: PokemonContainerProps) => {
     }
     return getPokemonImgSrcByName(props.name);
   }
-  return <NamedAvatar name={props.name} url={getPokemonImageSRC()} />;
+  return <PokeImage url={getPokemonImageSRC()} />;
 };

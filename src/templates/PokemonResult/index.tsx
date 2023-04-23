@@ -21,7 +21,9 @@ export const PokemonResult = ({name, handleBackButton}: PokemonResultProps) => {
               size={60}
               color={theme.colors.text_01}
             />
-            "
+          </Text>
+          <Text>
+            <Icon name="heart-outline" size={60} color={theme.colors.text_01} />
           </Text>
         </Pressable>
         <Pokemon name={name} />
@@ -31,5 +33,8 @@ export const PokemonResult = ({name, handleBackButton}: PokemonResultProps) => {
 };
 
 const styles = StyleSheet.create({
-  button: {},
+  button: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
 });

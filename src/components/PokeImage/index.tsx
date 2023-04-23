@@ -1,11 +1,10 @@
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import React from 'react';
 
-export type NamedAvatarProps = {
-  name: string;
+export type PokeImageProps = {
   url: string;
 };
-export const NamedAvatar = ({name, url}: NamedAvatarProps) => {
+export const PokeImage = ({url}: PokeImageProps) => {
   return (
     <View style={styles.alignCenter}>
       <Image
@@ -17,7 +16,6 @@ export const NamedAvatar = ({name, url}: NamedAvatarProps) => {
           width: 440,
         }}
       />
-      <Text>{name}</Text>
     </View>
   );
 };
