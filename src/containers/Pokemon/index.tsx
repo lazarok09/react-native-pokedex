@@ -1,8 +1,14 @@
+import {View} from 'react-native';
 import React from 'react';
 
-import {getPokemonImgSrcByName} from '../../utils/pokemon';
+import {
+  getPokemonImgSrcByName,
+  getColorByType,
+  getIconByType,
+} from '../../utils/pokemon';
 import {PokeImage} from '../../components/PokeImage';
 import usePokemon from '../../hooks/pokemon';
+import {Tag} from '../../components/Tag';
 
 type PokemonContainerProps = {
   name: string;
@@ -20,5 +26,18 @@ export const Pokemon = (props: PokemonContainerProps) => {
     }
     return getPokemonImgSrcByName(props.name);
   }
-  return <PokeImage url={getPokemonImageSRC()} />;
+  const {types} = pokemon;
+
+  return (
+    <View>
+      <PokeImage url={getPokemonImageSRC()} />
+      {types?.map(type => (
+        <Tag
+          icon={getIconByType(type.type.name)}
+          text={type.type.name}
+          color={getColorByType(type.type.name)}
+        />
+      ))}
+    </View>
+  );
 };

@@ -26,7 +26,7 @@ interface Ability {
 }
 
 interface Species {
-  name: string;
+  name: PokemonTypes;
   url: string;
 }
 
@@ -168,3 +168,42 @@ interface Type {
   slot: number;
   type: Species;
 }
+type PokemonTypes =
+  | 'normal'
+  | 'fire'
+  | 'water'
+  | 'electric'
+  | 'grass'
+  | 'ice'
+  | 'fighting'
+  | 'poison'
+  | 'ground'
+  | 'flying'
+  | 'psychic'
+  | 'bug'
+  | 'rock'
+  | 'ghost'
+  | 'dragon'
+  | 'dark'
+  | 'steel'
+  | 'fairy';
+
+type PokemonTypeColors =
+  | '#A8A878'
+  | '#F08030'
+  | '#6890F0'
+  | '#F8D030'
+  | '#78C850'
+  | '#98D8D8'
+  | '#C03028'
+  | '#A040A0'
+  | '#E0C068'
+  | '#A890F0'
+  | '#F85888'
+  | '#A8B820'
+  | '#B8A038'
+  | '#705898'
+  | '#7038F8'
+  | '#705848'
+  | '#B8B8D0'
+  | '#EE99AC';
