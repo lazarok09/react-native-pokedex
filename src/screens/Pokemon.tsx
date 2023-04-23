@@ -7,7 +7,7 @@ import {StackParamList} from '../../App';
 export type PokemonScreenProps = NativeStackScreenProps<StackParamList>;
 
 const PokemonScreen = (props: PokemonScreenProps) => {
-  const {route} = props;
+  const {route, navigation} = props;
   function getPokemonName() {
     const key: StackParamList['Pokemon']['name'] = 'name';
 
@@ -17,7 +17,15 @@ const PokemonScreen = (props: PokemonScreenProps) => {
 
     return 'charizard';
   }
-  return <PokemonResult name={getPokemonName()} />;
+  const handleBackButton = () => {
+    navigation.goBack();
+  };
+  return (
+    <PokemonResult
+      handleBackButton={handleBackButton}
+      name={getPokemonName()}
+    />
+  );
 };
 
 export default PokemonScreen;
