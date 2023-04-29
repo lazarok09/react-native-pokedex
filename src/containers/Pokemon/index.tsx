@@ -1,4 +1,4 @@
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import {PanResponder} from 'react-native';
 import React, {useState} from 'react';
 
@@ -7,6 +7,7 @@ import {PokeImage} from '../../components/PokeImage';
 import {Heading} from '../../components/Heading';
 import usePokemon from '../../hooks/pokemon';
 import {Tag} from '../../components/Tag';
+import theme from '../../styles/theme';
 
 type PokemonContainerProps = {
   name: string;
@@ -49,24 +50,57 @@ export const Pokemon = (props: PokemonContainerProps) => {
 
   return (
     <View>
-      <Heading as="h2" customStyles={styles.container}>
-        {pokemon.name || 'carregando'}
-      </Heading>
+      <View style={styles.headingContainer}>
+        <View style={styles.headingAndTagsContainer}>
+          <Heading as="h2" customStyles={styles.headingText}>
+            {pokemon.name || 'carregando'}
+          </Heading>
+
+          <View style={styles.pokemonTypesContainer}>
+            {pokemon?.types?.map(thisPokemon => (
+              <Tag
+                icon={getIconByType(thisPokemon.type.name)}
+                text={thisPokemon.type.name}
+                color={getColorByType(thisPokemon.type.name)}
+              />
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.typeContainer}>
+          <Text style={styles.typeText}>{`#${pokemon.id}`}</Text>
+        </View>
+      </View>
+
       <View {...panResponder.panHandlers}>
         <PokeImage url={getPokemonImageSRC()} />
       </View>
-      {pokemon?.types?.map(thisPokemon => (
-        <Tag
-          icon={getIconByType(thisPokemon.type.name)}
-          text={thisPokemon.type.name}
-          color={getColorByType(thisPokemon.type.name)}
-        />
-      ))}
     </View>
   );
 };
 const styles = StyleSheet.create({
-  container: {
+  headingContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  headingAndTagsContainer: {
+    justifyContent: 'space-between',
+    gap: 20,
+  },
+  headingText: {
     textTransform: 'capitalize',
+  },
+  typeContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  typeText: {
+    color: theme.colors.text_01,
+    fontSize: Number(theme.typography.sizes.xhuge.replace('px', '')),
+    fontWeight: '700',
+  },
+  pokemonTypesContainer: {
+    flexDirection: 'row',
+    gap: 14,
   },
 });
