@@ -5,6 +5,14 @@ export const Wrapper = styled.View`
     position: relative;
   `}
 `;
+export const Text = styled.Text`
+  ${() => css`
+    padding: 0;
+    position: absolute;
+    bottom: 11px;
+    left: 11px;
+  `}
+`;
 
 export const CustomTextInput = styled.TextInput.attrs(() => ({
   placeholderTextColor: '#a9a9a9',

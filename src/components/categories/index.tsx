@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ColorizedBox} from '../box';
+import {ColorizedBox} from '../Box';
 import * as Styled from './styles';
 
 type CategoriesProps = {

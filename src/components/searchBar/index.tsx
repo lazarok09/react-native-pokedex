@@ -1,8 +1,6 @@
 import {
   TextInputSubmitEditingEventData,
   NativeSyntheticEvent,
-  StyleSheet,
-  Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import React from 'react';
@@ -25,18 +23,9 @@ export const SearchBar = (props: SearchBarProps) => {
         placeholder="Search pokemons, items e etc."
         onSubmitEditing={handleSearchSubmit}
       />
-      <Text style={styles.searchIcon}>
+      <Styled.Text>
         <Icon name="search" size={45} color={theme.colors.text_03} />;
-      </Text>
+      </Styled.Text>
     </Styled.Wrapper>
   );
 };
-
-const styles = StyleSheet.create({
-  searchIcon: {
-    padding: 0,
-    position: 'absolute',
-    bottom: 11,
-    left: 11,
-  },
-});
