@@ -16,7 +16,7 @@ type PokemonContainerProps = {
 export const Pokemon = (props: PokemonContainerProps) => {
   const [currentPokemon, setCurrentPokemon] = useState(props.name);
 
-  const {pokemon} = usePokemon(currentPokemon);
+  const {pokemon, loading} = usePokemon(currentPokemon);
 
   function getPokemonImageSRC() {
     if (Object.keys(pokemon).length > 0) {
@@ -35,15 +35,23 @@ export const Pokemon = (props: PokemonContainerProps) => {
       return dx < 1 || dx > 1;
     },
     onPanResponderRelease: (_, gestureState) => {
-      // moved to the left
+      // moved to the right
       if (gestureState.dx < 1) {
         // go to one pokemon before (previous) this one
-        setCurrentPokemon(`${pokemon.id + 1}`);
+        if (!loading) {
+          setCurrentPokemon(`${pokemon.id + 1}`);
+        }
       }
-      // moved to the right
+      // moved to the left
       if (gestureState.dx > 1) {
         // go to one pokemon after (next) this one
-        setCurrentPokemon(`${pokemon.id + -1}`);
+
+        if (pokemon.id === 1) {
+          return;
+        }
+        if (!loading) {
+          setCurrentPokemon(`${pokemon.id - 1}`);
+        }
       }
     },
   });
@@ -53,7 +61,7 @@ export const Pokemon = (props: PokemonContainerProps) => {
       <View style={styles.headingContainer}>
         <View style={styles.headingAndTagsContainer}>
           <Heading as="h2" customStyles={styles.headingText}>
-            {pokemon.name || 'carregando'}
+            {loading ? 'Carregando' : pokemon.name}
           </Heading>
 
           <View style={styles.pokemonTypesContainer}>
@@ -68,7 +76,9 @@ export const Pokemon = (props: PokemonContainerProps) => {
         </View>
 
         <View style={styles.typeContainer}>
-          <Text style={styles.typeText}>{`#${pokemon.id}`}</Text>
+          <Text style={styles.typeText}>
+            {pokemon.id ? `#${pokemon.id}` : ''}
+          </Text>
         </View>
       </View>
 
