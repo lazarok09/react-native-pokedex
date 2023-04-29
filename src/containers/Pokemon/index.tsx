@@ -35,10 +35,19 @@ export const Pokemon = (props: PokemonContainerProps) => {
     onMoveShouldSetPanResponderCapture: (_, gestureState) => {
       // Define as condições para o início do gesto de arrastar
       const {dx} = gestureState;
-      return dx > 5;
+      return dx < 1 || dx > 1;
     },
-    onPanResponderRelease: () => {
-      setCurrentPokemon(`${pokemon.id + 1}`);
+    onPanResponderRelease: (_, gestureState) => {
+      // moved to the left
+      if (gestureState.dx < 1) {
+        // go to one pokemon before (previous) this one
+        setCurrentPokemon(`${pokemon.id + 1}`);
+      }
+      // moved to the right
+      if (gestureState.dx > 1) {
+        // go to one pokemon after (next) this one
+        setCurrentPokemon(`${pokemon.id + -1}`);
+      }
     },
   });
 
