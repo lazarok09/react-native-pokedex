@@ -6,6 +6,7 @@ import {getColorByType, getIconByType} from '../../utils/pokemon';
 import {PokeImage} from '../../components/PokeImage';
 import {Heading} from '../../components/Heading';
 import usePokemon from '../../hooks/pokemon';
+import {Stats} from '../../components/Stats';
 import {Tag} from '../../components/Tag';
 import theme from '../../styles/theme';
 
@@ -85,6 +86,15 @@ export const Pokemon = (props: PokemonContainerProps) => {
       <View {...panResponder.panHandlers}>
         <PokeImage url={getPokemonImageSRC()} />
       </View>
+      {pokemon?.stats?.map((stat, index) => {
+        return (
+          <Stats
+            label={stat.stat.name}
+            statsNumber={stat.base_stat}
+            key={index}
+          />
+        );
+      })}
     </View>
   );
 };
