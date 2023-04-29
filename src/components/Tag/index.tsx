@@ -1,4 +1,3 @@
-import {Text} from 'react-native';
 import React from 'react';
 
 import * as Styled from './styles';
@@ -12,7 +11,7 @@ export const Tag = ({icon, text, color}: TagProps) => {
   return (
     <Styled.Wrapper backgroundColor={color}>
       {icon}
-      <Text>{text}</Text>
+      <Styled.Text>{text}</Styled.Text>
     </Styled.Wrapper>
   );
 };
