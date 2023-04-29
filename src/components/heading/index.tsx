@@ -1,4 +1,4 @@
-import {StyleSheet, Text} from 'react-native';
+import {StyleProp, StyleSheet, Text, TextStyle} from 'react-native';
 import React from 'react';
 
 import theme from '../../styles/theme';
@@ -8,10 +8,15 @@ export type Keys = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 type HeadingProps = {
   as: Keys;
   children: React.ReactNode;
+  customStyles?: StyleProp<TextStyle>;
 };
 
-export const Heading = ({as, children}: HeadingProps) => {
-  return <Text style={[styles[as], styles.commonStyles]}>{children}</Text>;
+export const Heading = ({as, children, customStyles}: HeadingProps) => {
+  return (
+    <Text style={[styles[as], styles.commonStyles, customStyles]}>
+      {children}
+    </Text>
+  );
 };
 
 const styles = StyleSheet.create({

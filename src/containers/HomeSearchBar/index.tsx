@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import React from 'react';
 
-import {SearchBar} from '../../components/searchBar';
+import {SearchBar} from '../../components/SearchBar';
 
 type HomeSearchBarProps = {
   onSearchSubmit: (pokemonName: string) => void;

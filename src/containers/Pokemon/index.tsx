@@ -1,5 +1,6 @@
-import {View} from 'react-native';
-import React from 'react';
+import {View, StyleSheet} from 'react-native';
+import {PanResponder} from 'react-native';
+import React, {useState} from 'react';
 
 import {
   getPokemonImgSrcByName,
@@ -7,6 +8,7 @@ import {
   getIconByType,
 } from '../../utils/pokemon';
 import {PokeImage} from '../../components/PokeImage';
+import {Heading} from '../../components/Heading';
 import usePokemon from '../../hooks/pokemon';
 import {Tag} from '../../components/Tag';
 
@@ -15,7 +17,9 @@ type PokemonContainerProps = {
 };
 
 export const Pokemon = (props: PokemonContainerProps) => {
-  const {pokemon} = usePokemon(props.name);
+  const [currentPokemon, setCurrentPokemon] = useState(props.name);
+
+  const {pokemon} = usePokemon(currentPokemon);
 
   function getPokemonImageSRC() {
     if (Object.keys(pokemon).length > 0) {
@@ -24,12 +28,28 @@ export const Pokemon = (props: PokemonContainerProps) => {
         return pokemon.sprites.front_default;
       }
     }
-    return getPokemonImgSrcByName(props.name);
+    return '';
   }
+
+  const panResponder = PanResponder.create({
+    onMoveShouldSetPanResponderCapture: (_, gestureState) => {
+      // Define as condições para o início do gesto de arrastar
+      const {dx} = gestureState;
+      return dx > 5;
+    },
+    onPanResponderRelease: () => {
+      setCurrentPokemon(`${pokemon.id + 1}`);
+    },
+  });
 
   return (
     <View>
-      <PokeImage url={getPokemonImageSRC()} />
+      <Heading as="h2" customStyles={styles.container}>
+        {pokemon.name || 'carregando'}
+      </Heading>
+      <View {...panResponder.panHandlers}>
+        <PokeImage url={getPokemonImageSRC()} />
+      </View>
       {pokemon?.types?.map(thisPokemon => (
         <Tag
           icon={getIconByType(thisPokemon.type.name)}
@@ -40,3 +60,8 @@ export const Pokemon = (props: PokemonContainerProps) => {
     </View>
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    textTransform: 'capitalize',
+  },
+});

@@ -1,9 +1,9 @@
 import React from 'react';
 
 import {HomeSearchBar} from '../../containers/HomeSearchBar';
-import {Categories} from '../../components/categories';
+import {Categories} from '../../components/Categories';
 import {HomeScreenProps} from '../../screens/Home';
-import {Heading} from '../../components/heading';
+import {Heading} from '../../components/Heading';
 import * as Styled from './styles';
 
 type Props = {
