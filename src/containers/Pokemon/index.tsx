@@ -2,11 +2,7 @@ import {View, StyleSheet} from 'react-native';
 import {PanResponder} from 'react-native';
 import React, {useState} from 'react';
 
-import {
-  getPokemonImgSrcByName,
-  getColorByType,
-  getIconByType,
-} from '../../utils/pokemon';
+import {getColorByType, getIconByType} from '../../utils/pokemon';
 import {PokeImage} from '../../components/PokeImage';
 import {Heading} from '../../components/Heading';
 import usePokemon from '../../hooks/pokemon';
