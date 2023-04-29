@@ -1,11 +1,8 @@
+import {SvgUri} from 'react-native-svg';
 import {View} from 'react-native';
 import React from 'react';
 
-import {
-  getPokemonImgSrcByName,
-  getColorByType,
-  getIconByType,
-} from '../../utils/pokemon';
+import {getPokemonImgSrcByName, getColorByType} from '../../utils/pokemon';
 import {PokeImage} from '../../components/PokeImage';
 import usePokemon from '../../hooks/pokemon';
 import {Tag} from '../../components/Tag';
@@ -33,7 +30,13 @@ export const Pokemon = (props: PokemonContainerProps) => {
       <PokeImage url={getPokemonImageSRC()} />
       {types?.map(type => (
         <Tag
-          icon={getIconByType(type.type.name)}
+          icon={
+            <SvgUri
+              width="20"
+              height="20"
+              uri="https://svgsilh.com/svg_v2/2451996.svg"
+            />
+          }
           text={type.type.name}
           color={getColorByType(type.type.name)}
         />
