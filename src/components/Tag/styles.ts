@@ -10,6 +10,7 @@ export const Wrapper = styled.View<Props>`
     flex-direction: row;
     gap: 12px;
     align-items: center;
+    justify-content: center;
     border-radius: 12px;
   `}
 `;

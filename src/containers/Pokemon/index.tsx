@@ -52,12 +52,10 @@ export const Pokemon = (props: PokemonContainerProps) => {
   });
 
   function getCurrentPokemonColor(): PokemonTypeColors {
-    if (pokemon) {
-      return getColorByType(
-        pokemon?.types[pokemon.types.length - 1]?.type?.name,
-      );
+    if (Object.keys(pokemon).length > 0) {
+      return getColorByType(pokemon?.types[0]?.type?.name);
     }
-    return '#78C850';
+    return '#7038F8';
   }
   return (
     <View>

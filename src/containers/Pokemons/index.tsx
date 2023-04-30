@@ -1,16 +1,73 @@
 import {View, Text, TouchableOpacity} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import {StyleSheet, FlatList} from 'react-native';
 import {SafeAreaView} from 'react-native';
 import React from 'react';
 
-import {Pokemon} from '../../containers/Pokemon';
+import {getColorByType, getIconByType} from '../../utils/pokemon';
+import {getPokemonImageSRC} from '../../utils/image';
 import usePokemons from '../../hooks/pokemons';
+import {Avatar} from '../../components/Avatar';
+import usePokemon from '../../hooks/pokemon';
+import useSpecie from '../../hooks/specie';
+import {Tag} from '../../components/Tag';
 import * as Styled from './styles';
 
 type Props = {
-  onPokemonPress: (pokemonName: string) => void;
+  handleOnPokemonPress: (pokemonName: string) => void;
 };
-export const Pokemons = ({onPokemonPress}: Props) => {
+const PokemonListItem = ({currentPokemon}: {currentPokemon: string}) => {
+  const {pokemon} = usePokemon(currentPokemon);
+  const {specie} = useSpecie(currentPokemon);
+
+  if (!Object.keys(pokemon).length || !Object.keys(specie).length) {
+    return <Text>Loading...</Text>;
+  }
+  return (
+    <View style={styles.container}>
+      <View style={styles.img}>
+        <Avatar imageSrc={getPokemonImageSRC(pokemon)} />
+      </View>
+      <View style={styles.tag}>
+        {pokemon.types.map(type => (
+          <Tag
+            text={''}
+            icon={getIconByType(type.type.name)}
+            color={getColorByType(type.type.name)}
+          />
+        ))}
+      </View>
+    </View>
+  );
+};
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flex: 1,
+  },
+  img: {
+    height: 150,
+    width: 150,
+  },
+  tag: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  divider: {
+    height: 1,
+    width: '100%',
+    backgroundColor: '#607D8B',
+  },
+});
+
+const ItemDivider = () => {
+  return <View style={styles.divider} />;
+};
+
+export const Pokemons = ({
+  handleOnPokemonPress: handleOnPokemonPress,
+}: Props) => {
   const {pokemons, error, loading} = usePokemons();
 
   const renderPokemons = () => {
@@ -32,17 +89,20 @@ export const Pokemons = ({onPokemonPress}: Props) => {
     if (pokemons?.length >= 1) {
       return (
         <SafeAreaView>
-          <ScrollView>
-            <Styled.Wrapper>
-              {pokemons.map((pokemon, index) => (
+          <Styled.Wrapper>
+            <FlatList
+              data={pokemons}
+              renderItem={({item, index}) => (
                 <TouchableOpacity
-                  onPress={() => onPokemonPress(pokemon.name)}
+                  onPress={() => handleOnPokemonPress(item.name)}
                   key={index}>
-                  <Pokemon name={pokemon.name} />
+                  <PokemonListItem currentPokemon={item.name} />
                 </TouchableOpacity>
-              ))}
-            </Styled.Wrapper>
-          </ScrollView>
+              )}
+              keyExtractor={item => item.name}
+              ItemSeparatorComponent={ItemDivider}
+            />
+          </Styled.Wrapper>
         </SafeAreaView>
       );
     }

@@ -27,7 +27,5 @@ const styles = StyleSheet.create({
   picture: {
     flex: 1,
     alignSelf: 'stretch',
-    borderColor: 'red',
-    borderWidth: 3,
   },
 });

@@ -11,7 +11,7 @@ export const Tag = ({icon, text, color}: TagProps) => {
   return (
     <Styled.Wrapper backgroundColor={color}>
       {icon}
-      <Styled.Text>{text}</Styled.Text>
+      {text && <Styled.Text>{text}</Styled.Text>}
     </Styled.Wrapper>
   );
 };
