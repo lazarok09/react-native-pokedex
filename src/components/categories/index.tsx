@@ -5,14 +5,15 @@ import * as Styled from './styles';
 
 type CategoriesProps = {
   handleOnPressOut: () => void;
+  handleOnPokemonCategoryClick: () => void;
 };
 export const Categories = (props: CategoriesProps) => {
-  const {handleOnPressOut} = props;
+  const {handleOnPressOut, handleOnPokemonCategoryClick} = props;
   return (
     <Styled.Wrapper>
       <Styled.Item>
         <ColorizedBox
-          handleOnPressOut={handleOnPressOut}
+          handleOnPressOut={handleOnPokemonCategoryClick}
           color="green"
           text="Pokémon"
         />

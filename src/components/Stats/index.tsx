@@ -5,13 +5,17 @@ import * as Styled from './styles';
 type StatsProps = {
   label: string;
   statsNumber: number;
+  color: PokemonTypeColors;
 };
-export const Progress = ({statsNumber}: Pick<StatsProps, 'statsNumber'>) => {
+export const Progress = ({
+  statsNumber,
+  color,
+}: Pick<StatsProps, 'statsNumber' | 'color'>) => {
   return (
     <Styled.ProgressContainer>
       <Styled.Progress
         progress={(statsNumber / 255) * 100}
-        progressColor={'#F08030'}
+        progressColor={color}
       />
     </Styled.ProgressContainer>
   );

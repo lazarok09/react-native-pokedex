@@ -21,7 +21,7 @@ export const Pokemon = (props: PokemonContainerProps) => {
   const [currentPokemon, setCurrentPokemon] = useState(props.name);
 
   const {pokemon, loading} = usePokemon(currentPokemon);
-  const {specie} = useSpecie(pokemon.id);
+  const {specie} = useSpecie(currentPokemon);
 
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponderCapture: (_, gestureState) => {
@@ -51,10 +51,14 @@ export const Pokemon = (props: PokemonContainerProps) => {
     },
   });
 
-  console.log(
-    '🚀 ~ file: index.tsx:73 ~ getEnglishFlavor ~ flavor_text_entries:',
-    specie,
-  );
+  function getCurrentPokemonColor(): PokemonTypeColors {
+    if (pokemon) {
+      return getColorByType(
+        pokemon?.types[pokemon.types.length - 1]?.type?.name,
+      );
+    }
+    return '#78C850';
+  }
   return (
     <View>
       <View style={styles.headingContainer}>
@@ -81,12 +85,19 @@ export const Pokemon = (props: PokemonContainerProps) => {
         </View>
       </View>
 
-      <View {...panResponder.panHandlers}>
+      <View
+        {...panResponder.panHandlers}
+        style={{
+          backgroundColor: getCurrentPokemonColor(),
+        }}>
         <PokeImage url={getPokemonImageSRC(pokemon)} />
       </View>
 
       <Text style={styles.flavorText}>{getEnglishFlavor(specie)}</Text>
-      <PokemonInfoStatus pokemonStatus={pokemon?.stats} />
+      <PokemonInfoStatus
+        color={getCurrentPokemonColor()}
+        pokemonStatus={pokemon?.stats}
+      />
     </View>
   );
 };

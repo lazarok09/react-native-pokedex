@@ -17,12 +17,18 @@ export const Home = (props: Props) => {
       name: pokemonName,
     });
   };
+  const handleOnPokemonCategoryClick = () => {
+    navigation.navigate('Pokemons');
+  };
 
   return (
     <Styled.Wrapper>
       <Heading as="h1">What are you looking for ?</Heading>
       <HomeSearchBar onSearchSubmit={onSearchSubmit} />
-      <Categories handleOnPressOut={() => {}} />
+      <Categories
+        handleOnPressOut={() => {}}
+        handleOnPokemonCategoryClick={handleOnPokemonCategoryClick}
+      />
     </Styled.Wrapper>
   );
 };

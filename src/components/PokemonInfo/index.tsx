@@ -5,9 +5,10 @@ import {Label, Progress, StatusNumber} from '../Stats';
 
 type Props = {
   pokemonStatus: Stat[];
+  color: PokemonTypeColors;
 };
 
-export const PokemonInfoStatus = ({pokemonStatus}: Props) => {
+export const PokemonInfoStatus = ({pokemonStatus, color}: Props) => {
   return (
     <View style={styles.pokemonInfoContainer}>
       <View>
@@ -22,7 +23,7 @@ export const PokemonInfoStatus = ({pokemonStatus}: Props) => {
               <View style={styles.statusNumber}>
                 <StatusNumber statsNumber={stat.base_stat} key={index} />
               </View>
-              <Progress statsNumber={stat.base_stat} />
+              <Progress color={color} statsNumber={stat.base_stat} />
             </View>
           );
         })}

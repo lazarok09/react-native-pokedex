@@ -7,7 +7,12 @@ import {StackParamList} from '../../App';
 export type PokemonsScreenProps = NativeStackScreenProps<StackParamList>;
 
 const PokemonsScreen = (props: PokemonsScreenProps) => {
-  const {} = props;
-  return <Pokemons />;
+  const {navigation} = props;
+  const handleOnPokemonPress = (pokemonName: string) => {
+    navigation.navigate('Pokemon', {
+      name: pokemonName,
+    });
+  };
+  return <Pokemons onPokemonPress={handleOnPokemonPress} />;
 };
 export default PokemonsScreen;
