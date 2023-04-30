@@ -19,14 +19,17 @@ export const Pokemon = (props: PokemonContainerProps) => {
 
   const {pokemon, loading} = usePokemon(currentPokemon);
 
-  function getPokemonImageSRC() {
+  function getPokemonImageSRC(): string {
     if (Object.keys(pokemon).length > 0) {
-      const hasABetterImage = !!pokemon?.sprites?.front_default?.length;
+      const hasABetterImage =
+        !!pokemon?.sprites?.other?.['official-artwork']?.front_default?.length;
+
       if (hasABetterImage) {
-        return pokemon.sprites.front_default;
+        return pokemon.sprites.other?.['official-artwork'].front_default || '';
       }
     }
-    return '';
+
+    return pokemon?.sprites?.back_default || '';
   }
 
   const panResponder = PanResponder.create({

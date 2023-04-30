@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   picture: {
-    height: 200,
-    width: 200,
-    alignSelf: 'center',
-    borderRadius: 200 / 2,
+    flex: 1,
+    alignSelf: 'stretch',
+    borderColor: 'red',
+    borderWidth: 3,
   },
 });
