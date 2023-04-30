@@ -1,9 +1,10 @@
 import {View, StyleSheet, Text} from 'react-native';
+import React, {useContext, useState} from 'react';
 import {PanResponder} from 'react-native';
-import React, {useState} from 'react';
 
 import {getColorByType, getIconByType} from '../../utils/pokemon';
 import {PokemonInfoStatus} from '../../components/PokemonInfo';
+import {PokemonContext} from '../../context/Pokemon/context';
 import {PokeImage} from '../../components/PokeImage';
 import {getPokemonImageSRC} from '../../utils/image';
 import {getEnglishFlavor} from '../../utils/general';
@@ -50,13 +51,17 @@ export const Pokemon = (props: PokemonContainerProps) => {
       }
     },
   });
+  const {setColor} = useContext(PokemonContext);
 
   function getCurrentPokemonColor(): PokemonTypeColors {
     if (Object.keys(pokemon).length > 0) {
-      return getColorByType(pokemon?.types[0]?.type?.name);
+      const result = getColorByType(pokemon?.types[0]?.type?.name);
+      setColor(result);
+      return result;
     }
     return '#7038F8';
   }
+
   return (
     <View>
       <View style={styles.headingContainer}>
@@ -83,11 +88,7 @@ export const Pokemon = (props: PokemonContainerProps) => {
         </View>
       </View>
 
-      <View
-        {...panResponder.panHandlers}
-        style={{
-          backgroundColor: getCurrentPokemonColor(),
-        }}>
+      <View {...panResponder.panHandlers}>
         <PokeImage url={getPokemonImageSRC(pokemon)} />
       </View>
 

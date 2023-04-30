@@ -3,8 +3,10 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {NavigationContainer} from '@react-navigation/native';
 import {ThemeProvider} from 'styled-components/native';
 import {StatusBar} from 'react-native';
+import 'react-native-gesture-handler';
 import React from 'react';
 
+import {PokemonProvider} from './src/context/Pokemon';
 import PokemonsScreen from './src/screens/Pokemons';
 import PokemonScreen from './src/screens/Pokemon';
 import HomeScreen from './src/screens/Home';
@@ -30,17 +32,19 @@ function App(): JSX.Element {
       />
 
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={theme}>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}
-            initialRouteName="Home">
-            <Stack.Screen name="Home" component={HomeScreen} />
-            <Stack.Screen name="Pokemon" component={PokemonScreen} />
-            <Stack.Screen name="Pokemons" component={PokemonsScreen} />
-          </Stack.Navigator>
-        </ThemeProvider>
+        <PokemonProvider>
+          <ThemeProvider theme={theme}>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+              }}
+              initialRouteName="Home">
+              <Stack.Screen name="Home" component={HomeScreen} />
+              <Stack.Screen name="Pokemon" component={PokemonScreen} />
+              <Stack.Screen name="Pokemons" component={PokemonsScreen} />
+            </Stack.Navigator>
+          </ThemeProvider>
+        </PokemonProvider>
       </QueryClientProvider>
     </NavigationContainer>
   );

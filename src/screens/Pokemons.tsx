@@ -22,6 +22,7 @@ const PokemonsScreen = (props: PokemonsScreenProps) => {
   const handleOnBackButtonPress = () => {
     navigation.goBack();
   };
+
   return (
     <PokemonsList
       handleOnBackButton={handleOnBackButtonPress}
