@@ -33,7 +33,7 @@ export const StatusNumber = styled.Text`
 export const ProgressContainer = styled.View`
   ${() => css`
     height: 9px;
-    width: 100%;
+    width: 70%;
     background: #181818;
     border-radius: 12px;
     position: relative;

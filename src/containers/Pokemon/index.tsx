@@ -1,16 +1,12 @@
 import {View, StyleSheet, Text} from 'react-native';
-import React, {useContext, useState} from 'react';
 import {PanResponder} from 'react-native';
+import React, {useState} from 'react';
 
 import {getColorByType, getIconByType} from '../../utils/pokemon';
-import {PokemonInfoStatus} from '../../components/PokemonInfo';
-import {PokemonContext} from '../../context/Pokemon/context';
 import {PokeImage} from '../../components/PokeImage';
 import {getPokemonImageSRC} from '../../utils/image';
-import {getEnglishFlavor} from '../../utils/general';
 import {Heading} from '../../components/Heading';
 import usePokemon from '../../hooks/pokemon';
-import useSpecie from '../../hooks/specie';
 import {Tag} from '../../components/Tag';
 import theme from '../../styles/theme';
 
@@ -22,7 +18,6 @@ export const Pokemon = (props: PokemonContainerProps) => {
   const [currentPokemon, setCurrentPokemon] = useState(props.name);
 
   const {pokemon, loading} = usePokemon(currentPokemon);
-  const {specie} = useSpecie(currentPokemon);
 
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponderCapture: (_, gestureState) => {
@@ -51,19 +46,9 @@ export const Pokemon = (props: PokemonContainerProps) => {
       }
     },
   });
-  const {setColor} = useContext(PokemonContext);
-
-  function getCurrentPokemonColor(): PokemonTypeColors {
-    if (Object.keys(pokemon).length > 0) {
-      const result = getColorByType(pokemon?.types[0]?.type?.name);
-      setColor(result);
-      return result;
-    }
-    return '#7038F8';
-  }
 
   return (
-    <View>
+    <>
       <View style={styles.headingContainer}>
         <View style={styles.headingAndTagsContainer}>
           <Heading as="h2" customStyles={styles.headingText}>
@@ -91,13 +76,7 @@ export const Pokemon = (props: PokemonContainerProps) => {
       <View {...panResponder.panHandlers}>
         <PokeImage url={getPokemonImageSRC(pokemon)} />
       </View>
-
-      <Text style={styles.flavorText}>{getEnglishFlavor(specie)}</Text>
-      <PokemonInfoStatus
-        color={getCurrentPokemonColor()}
-        pokemonStatus={pokemon?.stats}
-      />
-    </View>
+    </>
   );
 };
 const styles = StyleSheet.create({
@@ -121,11 +100,7 @@ const styles = StyleSheet.create({
     fontSize: Number(theme.typography.sizes.xhuge.replace('px', '')),
     fontWeight: '700',
   },
-  flavorText: {
-    color: theme.colors.text_03,
-    fontSize: Number(theme.typography.sizes.xxlarge.replace('px', '')),
-    fontWeight: '600',
-  },
+
   pokemonTypesContainer: {
     flexDirection: 'row',
     gap: 14,

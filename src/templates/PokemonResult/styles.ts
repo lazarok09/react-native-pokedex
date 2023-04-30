@@ -8,6 +8,11 @@ export const Wrapper = styled.View<Props>`
     color: ${theme.colors.text_01};
     background: ${backgroundColor};
     flex: 1;
+  `}
+`;
+
+export const PokemonArea = styled.View`
+  ${({theme}) => css`
     padding: 0 16px;
     padding-top: ${theme.box.gaps.large};
   `}
