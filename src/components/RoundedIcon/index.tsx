@@ -5,7 +5,7 @@ import React from 'react';
 type RoundedIconProps = {
   icon: React.ReactNode;
   color: PokemonTypeColors;
-  customStyles: StyleProp<TextStyle>;
+  customStyles?: StyleProp<TextStyle>;
 };
 export const RoundedIcon = ({icon, color, customStyles}: RoundedIconProps) => {
   return (

@@ -4,22 +4,22 @@ import {useMemo} from 'react';
 import {API} from '../../config';
 
 type ReturnProps = {
-  pokemon: Pokedex;
+  type: PokedexType;
   loading: boolean;
   error: any;
 };
 
 const DEFAULT_RETURN = {
-  pokemon: {} as Pokedex,
+  type: {} as PokedexType,
   loading: false,
   error: null,
 };
 
-const usePokemon = (name: string): ReturnProps => {
-  const URL = `${API}pokemon/${name}`;
+const useType = (identifier: PokemonTypes): ReturnProps => {
+  const URL = `${API}type/${identifier}`;
 
-  const {data, isLoading, isError} = useQuery<ReturnProps['pokemon']>({
-    queryKey: [`pokemon-${name}`],
+  const {data, isLoading, isError} = useQuery<ReturnProps['type']>({
+    queryKey: [`pokemon-type-${identifier}`],
     queryFn: () => fetch(URL).then(res => res.json()),
   });
 
@@ -28,10 +28,10 @@ const usePokemon = (name: string): ReturnProps => {
       return DEFAULT_RETURN;
     }
 
-    return {pokemon: data, loading: isLoading, error: isError};
+    return {type: data, loading: isLoading, error: isError};
   }, [data, isLoading, isError]);
 
   return memoizedData;
 };
 
-export default usePokemon;
+export default useType;

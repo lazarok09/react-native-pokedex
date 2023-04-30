@@ -17,7 +17,7 @@ const DEFAULT_RETURN = {
 };
 
 const usePokemons = (limit = 20): ReturnProps => {
-  const URL = `${API}/pokemon${objectToQuery({
+  const URL = `${API}pokemon${objectToQuery({
     limit,
   })}`;
 

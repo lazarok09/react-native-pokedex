@@ -16,7 +16,7 @@ const DEFAULT_RETURN = {
 };
 
 const useSpecie = (identifier: String | number): ReturnProps => {
-  const URL = `${API}/pokemon-species/${identifier}`;
+  const URL = `${API}pokemon-species/${identifier}`;
 
   const {data, isLoading, isError} = useQuery<ReturnProps['specie']>({
     queryKey: [`pokemon-specie-${identifier}`],
