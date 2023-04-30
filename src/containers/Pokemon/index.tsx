@@ -5,8 +5,11 @@ import React, {useState} from 'react';
 import {getColorByType, getIconByType} from '../../utils/pokemon';
 import {PokemonInfoStatus} from '../../components/PokemonInfo';
 import {PokeImage} from '../../components/PokeImage';
+import {getPokemonImageSRC} from '../../utils/image';
+import {getEnglishFlavor} from '../../utils/general';
 import {Heading} from '../../components/Heading';
 import usePokemon from '../../hooks/pokemon';
+import useSpecie from '../../hooks/specie';
 import {Tag} from '../../components/Tag';
 import theme from '../../styles/theme';
 
@@ -18,19 +21,7 @@ export const Pokemon = (props: PokemonContainerProps) => {
   const [currentPokemon, setCurrentPokemon] = useState(props.name);
 
   const {pokemon, loading} = usePokemon(currentPokemon);
-
-  function getPokemonImageSRC(): string {
-    if (Object.keys(pokemon).length > 0) {
-      const hasABetterImage =
-        !!pokemon?.sprites?.other?.['official-artwork']?.front_default?.length;
-
-      if (hasABetterImage) {
-        return pokemon.sprites.other?.['official-artwork'].front_default || '';
-      }
-    }
-
-    return pokemon?.sprites?.back_default || '';
-  }
+  const {specie} = useSpecie(pokemon.id);
 
   const panResponder = PanResponder.create({
     onMoveShouldSetPanResponderCapture: (_, gestureState) => {
@@ -60,6 +51,10 @@ export const Pokemon = (props: PokemonContainerProps) => {
     },
   });
 
+  console.log(
+    '🚀 ~ file: index.tsx:73 ~ getEnglishFlavor ~ flavor_text_entries:',
+    specie,
+  );
   return (
     <View>
       <View style={styles.headingContainer}>
@@ -87,8 +82,10 @@ export const Pokemon = (props: PokemonContainerProps) => {
       </View>
 
       <View {...panResponder.panHandlers}>
-        <PokeImage url={getPokemonImageSRC()} />
+        <PokeImage url={getPokemonImageSRC(pokemon)} />
       </View>
+
+      <Text style={styles.flavorText}>{getEnglishFlavor(specie)}</Text>
       <PokemonInfoStatus pokemonStatus={pokemon?.stats} />
     </View>
   );
@@ -113,6 +110,11 @@ const styles = StyleSheet.create({
     color: theme.colors.text_01,
     fontSize: Number(theme.typography.sizes.xhuge.replace('px', '')),
     fontWeight: '700',
+  },
+  flavorText: {
+    color: theme.colors.text_03,
+    fontSize: Number(theme.typography.sizes.xxlarge.replace('px', '')),
+    fontWeight: '600',
   },
   pokemonTypesContainer: {
     flexDirection: 'row',
