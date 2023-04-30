@@ -6,19 +6,23 @@ type StatsProps = {
   label: string;
   statsNumber: number;
 };
-export const Stats = ({label, statsNumber}: StatsProps) => {
+export const Progress = ({statsNumber}: Pick<StatsProps, 'statsNumber'>) => {
   return (
-    <Styled.ContainerView>
-      <Styled.Text>{label}</Styled.Text>
-      <Styled.Text>{statsNumber}</Styled.Text>
-      <Styled.Progresses>
-        <Styled.ProgressContainer>
-          <Styled.Progress
-            progress={(statsNumber / 255) * 100}
-            progressColor={'#F08030'}
-          />
-        </Styled.ProgressContainer>
-      </Styled.Progresses>
-    </Styled.ContainerView>
+    <Styled.ProgressContainer>
+      <Styled.Progress
+        progress={(statsNumber / 255) * 100}
+        progressColor={'#F08030'}
+      />
+    </Styled.ProgressContainer>
   );
+};
+
+export const Label = ({label}: Pick<StatsProps, 'label'>) => {
+  return <Styled.HpText>{label}</Styled.HpText>;
+};
+
+export const StatusNumber = ({
+  statsNumber,
+}: Pick<StatsProps, 'statsNumber'>) => {
+  return <Styled.StatusNumber>{statsNumber}</Styled.StatusNumber>;
 };

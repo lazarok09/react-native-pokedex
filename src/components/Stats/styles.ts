@@ -4,12 +4,7 @@ type Props = {
   progress: number;
   progressColor: PokemonTypeColors;
 };
-export const ContainerView = styled.View`
-  ${() => css`
-    flex-direction: row;
-    gap: 40px;
-  `}
-`;
+
 export const LabelText = styled.Text`
   ${({theme}) => css`
     color: ${theme.colors.text_01};
@@ -18,7 +13,7 @@ export const LabelText = styled.Text`
     width: 150px;
   `}
 `;
-export const Text = styled.Text`
+export const HpText = styled.Text`
   ${({theme}) => css`
     color: ${theme.colors.text_01};
     font-weight: bold;
@@ -26,6 +21,15 @@ export const Text = styled.Text`
     text-transform: uppercase;
   `}
 `;
+export const StatusNumber = styled.Text`
+  ${({theme}) => css`
+    color: ${theme.colors.text_03};
+    font-weight: bold;
+    font-size: ${theme.typography.sizes.xlarge};
+    text-transform: uppercase;
+  `}
+`;
+
 export const ProgressContainer = styled.View`
   ${() => css`
     height: 9px;
@@ -44,12 +48,5 @@ export const Progress = styled.View<Props>`
     top: 0;
     background: ${progressColor};
     width: ${progress + '%'};
-  `}
-`;
-
-export const Progresses = styled.View`
-  ${() => css`
-    gap: 204px;
-    flex: 1;
   `}
 `;
