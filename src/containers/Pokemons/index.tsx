@@ -4,12 +4,12 @@ import {SafeAreaView} from 'react-native';
 import React from 'react';
 
 import {getColorByType, getIconByType} from '../../utils/pokemon';
+import {RoundedIcon} from '../../components/RoundedIcon';
 import {getPokemonImageSRC} from '../../utils/image';
 import usePokemons from '../../hooks/pokemons';
 import {Avatar} from '../../components/Avatar';
 import usePokemon from '../../hooks/pokemon';
 import useSpecie from '../../hooks/specie';
-import {Tag} from '../../components/Tag';
 import * as Styled from './styles';
 
 type Props = {
@@ -27,10 +27,10 @@ const PokemonListItem = ({currentPokemon}: {currentPokemon: string}) => {
       <View style={styles.img}>
         <Avatar imageSrc={getPokemonImageSRC(pokemon)} />
       </View>
-      <View style={styles.tag}>
+      <View style={styles.tagContainer}>
         {pokemon.types.map(type => (
-          <Tag
-            text={''}
+          <RoundedIcon
+            customStyles={styles.tag}
             icon={getIconByType(type.type.name)}
             color={getColorByType(type.type.name)}
           />
@@ -47,12 +47,17 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   img: {
-    height: 150,
-    width: 150,
+    height: 180,
+    width: 180,
   },
-  tag: {
+  tagContainer: {
     flexDirection: 'row',
     gap: 12,
+  },
+  tag: {
+    height: 44,
+    width: 44,
+    borderRadius: 44 / 2,
   },
   divider: {
     height: 1,
