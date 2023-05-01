@@ -44,6 +44,7 @@ export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
   return (
     <View style={styles.infoArea}>
       <Tabs
+        tabColor={getCurrentPokemonColor()}
         InfoChild={INFO}
         EvolutionChild={<Text>Evolucao</Text>}
         MovesChild={<Text>Moves</Text>}
