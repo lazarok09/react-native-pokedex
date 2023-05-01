@@ -12,8 +12,6 @@ export const PokeImage = ({url}: PokeImageProps) => {
         source={{
           uri: url,
           cache: 'force-cache',
-          height: 220,
-          width: 440,
         }}
       />
     </View>
@@ -26,8 +24,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   picture: {
-    height: 250,
-    width: 310,
+    height: 290,
+    width: 290,
     borderRadius: 200 / 2,
   },
 });
