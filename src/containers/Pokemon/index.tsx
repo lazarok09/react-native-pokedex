@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import {getColorByType, getIconByType} from '../../utils/pokemon';
 import {PokeImage} from '../../components/PokeImage';
 import {getPokemonImageSRC} from '../../utils/image';
+import {getADarkenColor} from '../../utils/general';
 import {InfoTab} from '../../components/InfoTab';
 import {Heading} from '../../components/Heading';
 import usePokemon from '../../hooks/pokemon';
@@ -61,7 +62,10 @@ export const Pokemon = (props: PokemonContainerProps) => {
               <Tag
                 icon={getIconByType(thisPokemon.type.name)}
                 text={thisPokemon.type.name}
-                color={getColorByType(thisPokemon.type.name)}
+                color={getADarkenColor(
+                  getColorByType(thisPokemon.type.name),
+                  -2,
+                )}
               />
             ))}
           </View>
