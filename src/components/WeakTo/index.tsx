@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 12,
     background: '#181818',
+    flexWrap: 'wrap',
   },
   tagItem: {
     flexDirection: 'row',

@@ -27,32 +27,22 @@ export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
 
   return (
     <View style={styles.infoArea}>
-      <Text style={styles.flavorText}>{getEnglishFlavor(specie)}</Text>
+      <View style={styles.flavorArea}>
+        <Text style={styles.flavorText}>{getEnglishFlavor(specie)}</Text>
+      </View>
       <PokemonInfoStatus
         color={getCurrentPokemonColor()}
         pokemonStatus={pokemon?.stats}
       />
-      <Text style={styles.flavorText}>Battle condition</Text>
-      <Text style={styles.flavorText}>Weak to</Text>
-      <WeakTo loading={loading} pokemon={pokemon} />
+      <View style={styles.battleConditionArea}>
+        <Text style={styles.battleConditionHeading}>Battle condition</Text>
+        <Text style={styles.battleConditionWeakTo}>Weak to</Text>
+        <WeakTo loading={loading} pokemon={pokemon} />
+      </View>
     </View>
   );
 };
 const styles = StyleSheet.create({
-  typeText: {
-    color: theme.colors.text_01,
-    fontSize: Number(theme.typography.sizes.xhuge.replace('px', '')),
-    fontWeight: '700',
-  },
-  flavorText: {
-    color: theme.colors.text_03,
-    fontSize: Number(theme.typography.sizes.xxlarge.replace('px', '')),
-    fontWeight: '600',
-  },
-  pokemonTypesContainer: {
-    flexDirection: 'row',
-    gap: 14,
-  },
   infoArea: {
     backgroundColor: theme.colors.background,
     width: '100%',
@@ -60,5 +50,28 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 60,
     borderTopRightRadius: 60,
     padding: 60,
+  },
+  flavorArea: {
+    marginBottom: Number(theme.box.gaps.xxlarge.replace('px', '')),
+  },
+  flavorText: {
+    color: theme.colors.text_03,
+    fontSize: Number(theme.typography.sizes.large.replace('px', '')) + 3,
+    fontWeight: '600',
+  },
+
+  battleConditionArea: {
+    marginTop: 34,
+  },
+  battleConditionHeading: {
+    fontSize: Number(theme.typography.sizes.xlarge.replace('px', '')),
+    fontWeight: 'bold',
+    color: theme.colors.text_01,
+    marginBottom: 26,
+  },
+  battleConditionWeakTo: {
+    fontSize: Number(theme.typography.sizes.large.replace('px', '')),
+    color: theme.colors.text_01,
+    marginBottom: 15,
   },
 });
