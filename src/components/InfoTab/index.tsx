@@ -10,6 +10,7 @@ import usePokemon from '../../hooks/pokemon';
 import useSpecie from '../../hooks/specie';
 import theme from '../../styles/theme';
 import {WeakTo} from '../WeakTo';
+import {Tabs} from '../Tabs';
 
 export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
   const {setColor} = useContext(PokemonContext);
@@ -24,9 +25,8 @@ export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
     }
     return '#7038F8';
   }
-
-  return (
-    <View style={styles.infoArea}>
+  const INFO = (
+    <>
       <View style={styles.flavorArea}>
         <Text style={styles.flavorText}>{getEnglishFlavor(specie)}</Text>
       </View>
@@ -39,6 +39,15 @@ export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
         <Text style={styles.battleConditionWeakTo}>Weak to</Text>
         <WeakTo loading={loading} pokemon={pokemon} />
       </View>
+    </>
+  );
+  return (
+    <View style={styles.infoArea}>
+      <Tabs
+        InfoChild={INFO}
+        EvolutionChild={<Text>Evolucao</Text>}
+        MovesChild={<Text>Moves</Text>}
+      />
     </View>
   );
 };
