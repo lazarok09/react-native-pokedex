@@ -64,7 +64,7 @@ export const Pokemon = (props: PokemonContainerProps) => {
                 text={thisPokemon.type.name}
                 color={getADarkenColor(
                   getColorByType(thisPokemon.type.name),
-                  -2,
+                  0,
                 )}
               />
             ))}
@@ -113,6 +113,6 @@ const styles = StyleSheet.create({
 
   pokemonTypesContainer: {
     flexDirection: 'row',
-    gap: 14,
+    gap: 16,
   },
 });

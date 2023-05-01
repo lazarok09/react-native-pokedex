@@ -5,15 +5,14 @@ type Props = {
 };
 export const Wrapper = styled.View<Props>`
   ${({backgroundColor}) => css`
-    padding: 4px 12px;
+    padding: 4px 32px;
     background-color: ${backgroundColor};
     flex-direction: row;
     gap: 12px;
     align-items: center;
     justify-content: center;
     justify-items: center;
-
-    border-radius: 12px;
+    border-radius: 24px;
   `}
 `;
 
