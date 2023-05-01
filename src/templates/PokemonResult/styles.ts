@@ -10,10 +10,3 @@ export const Wrapper = styled.View<Props>`
     flex: 1;
   `}
 `;
-
-export const PokemonArea = styled.View`
-  ${({theme}) => css`
-    padding: 0 16px;
-    padding-top: ${theme.box.gaps.large};
-  `}
-`;

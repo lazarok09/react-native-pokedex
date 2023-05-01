@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import {getColorByType, getIconByType} from '../../utils/pokemon';
 import {PokeImage} from '../../components/PokeImage';
 import {getPokemonImageSRC} from '../../utils/image';
+import {InfoTab} from '../../components/InfoTab';
 import {Heading} from '../../components/Heading';
 import usePokemon from '../../hooks/pokemon';
 import {Tag} from '../../components/Tag';
@@ -48,7 +49,7 @@ export const Pokemon = (props: PokemonContainerProps) => {
   });
 
   return (
-    <>
+    <View>
       <View style={styles.headingContainer}>
         <View style={styles.headingAndTagsContainer}>
           <Heading as="h2" customStyles={styles.headingText}>
@@ -76,13 +77,18 @@ export const Pokemon = (props: PokemonContainerProps) => {
       <View {...panResponder.panHandlers}>
         <PokeImage url={getPokemonImageSRC(pokemon)} />
       </View>
-    </>
+      <InfoTab pokemonName={currentPokemon} />
+    </View>
   );
 };
 const styles = StyleSheet.create({
   headingContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    paddingLeft: 16,
+    paddingRight: 16,
+
+    padding: 16,
   },
   headingAndTagsContainer: {
     justifyContent: 'space-between',

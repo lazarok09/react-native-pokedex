@@ -5,7 +5,7 @@ import {HeartPressableIcon} from '../../components/HeartPressableIcon';
 import {PokemonContext} from '../../context/Pokemon/context';
 import {BackButton} from '../../components/BackButton';
 import {Pokemon} from '../../containers/Pokemon';
-import {InfoTab} from '../../components/InfoTab';
+import theme from '../../styles/theme';
 import * as Styled from './styles';
 
 type PokemonResultProps = {
@@ -19,15 +19,11 @@ export const PokemonResult = ({name, handleBackButton}: PokemonResultProps) => {
     <Styled.Wrapper backgroundColor={color}>
       <StatusBar backgroundColor={color} />
       <SafeAreaView>
-        <Styled.PokemonArea>
-          <View style={styles.header}>
-            <BackButton handleBackButton={handleBackButton} />
-            <HeartPressableIcon />
-          </View>
-          <Pokemon name={name} />
-        </Styled.PokemonArea>
-
-        <InfoTab pokemonName={name} />
+        <View style={styles.header}>
+          <BackButton handleBackButton={handleBackButton} />
+          <HeartPressableIcon />
+        </View>
+        <Pokemon name={name} />
       </SafeAreaView>
     </Styled.Wrapper>
   );
@@ -37,5 +33,8 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: 'space-between',
     flexDirection: 'row',
+    paddingTop: Number(theme.box.gaps.xxlarge.replace('px', '')),
+    paddingLeft: 16,
+    paddingRight: 16,
   },
 });

@@ -29,6 +29,7 @@ const theme = {
       medium: '16px',
       large: '24px',
       xlarge: '32px',
+      xxlarge: '42px',
     },
   },
 };
