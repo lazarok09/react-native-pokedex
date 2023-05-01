@@ -46,11 +46,14 @@ export const WeakTo = ({loading, pokemon}: Props): JSX.Element => {
     <View style={styles.tagContainer}>
       {types.map(type => {
         return getNamesByTpe(type).map(typeName => (
-          <RoundedIcon
-            customStyles={styles.tag}
-            icon={getIconByType(typeName)}
-            color={getColorByType(typeName)}
-          />
+          <View style={styles.tagItem}>
+            <RoundedIcon
+              customStyles={styles.tag}
+              icon={getIconByType(typeName)}
+              color={getColorByType(typeName)}
+            />
+            <Text style={styles.tagText}>2x</Text>
+          </View>
         ));
       })}
     </View>
@@ -62,13 +65,23 @@ const styles = StyleSheet.create({
     gap: 12,
     background: '#181818',
   },
+  tagItem: {
+    flexDirection: 'row',
+    paddingRight: 12,
+    backgroundColor: '#141414',
+    borderTopRightRadius: 15,
+    borderBottomRightRadius: 15,
+  },
   tag: {
     height: 44,
     width: 44,
     borderRadius: 44 / 2,
   },
   tagText: {
-    width: 20,
+    fontSize: Number(theme.typography.sizes.medium.replace('px', '')),
     color: theme.colors.text_01,
+    verticalAlign: 'middle',
+    paddingRight: 16,
+    paddingLeft: 16,
   },
 });
