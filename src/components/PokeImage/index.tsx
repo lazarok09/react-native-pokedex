@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   picture: {
-    height: 290,
-    width: 290,
+    height: 490,
+    width: 490,
     borderRadius: 200 / 2,
   },
 });
