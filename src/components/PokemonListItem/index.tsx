@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import React from 'react';
 
 import {getColorByType, getIconByType} from '../../utils/pokemon';
@@ -6,7 +6,6 @@ import {RoundedIcon} from '../../components/RoundedIcon';
 import {getPokemonImageSRC} from '../../utils/image';
 import {Avatar} from '../../components/Avatar';
 import usePokemon from '../../hooks/pokemon';
-import useSpecie from '../../hooks/specie';
 
 export const ItemDivider = () => {
   return <View style={styles.divider} />;
@@ -14,10 +13,9 @@ export const ItemDivider = () => {
 
 export const PokemonListItem = ({currentPokemon}: {currentPokemon: string}) => {
   const {pokemon} = usePokemon(currentPokemon);
-  const {specie} = useSpecie(currentPokemon);
 
-  if (!Object.keys(pokemon).length || !Object.keys(specie).length) {
-    return <Text>Loading...</Text>;
+  if (!Object.keys(pokemon).length) {
+    return null;
   }
   return (
     <View style={styles.container}>
@@ -42,6 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+
     flex: 1,
   },
   img: {

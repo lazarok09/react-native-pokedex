@@ -14,19 +14,13 @@ export const Pokemons = ({
   handleOnPokemonPress: handleOnPokemonPress,
 }: Props) => {
   const {pokemons, error, loading} = usePokemons();
+  console.log('🚀 ~ file: index.tsx:17 ~ loading:', loading);
 
   const renderPokemons = () => {
     if (error) {
       return (
         <View>
           <Text>Erro :/</Text>
-        </View>
-      );
-    }
-    if (loading) {
-      return (
-        <View>
-          <Text>Loading...</Text>
         </View>
       );
     }
