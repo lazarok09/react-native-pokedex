@@ -24,7 +24,7 @@ export const Tabs = ({
   MovesChild,
   tabColor,
 }: Props) => {
-  const [activeTab, setActiveTab] = useState<TABS>('INFO');
+  const [activeTab, setActiveTab] = useState<TABS>('EVOLUTION');
 
   const switcher: SwitchTabsOptions = {
     ['INFO']: InfoChild,

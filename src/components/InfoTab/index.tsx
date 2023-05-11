@@ -6,6 +6,7 @@ import {PokemonContext} from '../../context/Pokemon/context';
 import {getEnglishFlavor} from '../../utils/general';
 import {getColorByType} from '../../utils/pokemon';
 import {PokemonInfoStatus} from '../PokemonInfo';
+import {EvolutionCard} from '../EvolutionCard';
 import usePokemon from '../../hooks/pokemon';
 import useSpecie from '../../hooks/specie';
 import theme from '../../styles/theme';
@@ -41,12 +42,30 @@ export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
       </View>
     </>
   );
+
+  const EVOLUTION = () => {
+    const evolutions = [
+      pokemon?.sprites?.front_default,
+      pokemon?.sprites?.back_default,
+      pokemon?.sprites?.front_shiny,
+      pokemon?.sprites?.back_default,
+    ];
+    return (
+      <View>
+        {evolutions.map((url, index) => {
+          return (
+            <EvolutionCard evolutionUrl={url} pokemonUrl={url} key={index} />
+          );
+        })}
+      </View>
+    );
+  };
   return (
     <View style={styles.infoArea}>
       <Tabs
         tabColor={getCurrentPokemonColor()}
         InfoChild={INFO}
-        EvolutionChild={<Text>Evolucao</Text>}
+        EvolutionChild={EVOLUTION()}
         MovesChild={<Text>Moves</Text>}
       />
     </View>
