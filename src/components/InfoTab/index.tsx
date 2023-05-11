@@ -6,6 +6,7 @@ import {PokemonContext} from '../../context/Pokemon/context';
 import {getEnglishFlavor} from '../../utils/general';
 import {getColorByType} from '../../utils/pokemon';
 import {PokemonInfoStatus} from '../PokemonInfo';
+import useEvolution from '../../hooks/evolution';
 import {EvolutionCard} from '../EvolutionCard';
 import usePokemon from '../../hooks/pokemon';
 import useSpecie from '../../hooks/specie';
@@ -17,6 +18,7 @@ export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
   const {setColor} = useContext(PokemonContext);
   const {pokemon, loading} = usePokemon(pokemonName);
   const {specie} = useSpecie(pokemon.name);
+  const {evolution} = useEvolution(pokemon.name);
 
   function getCurrentPokemonColor(): PokemonTypeColors {
     if (Object.keys(pokemon).length > 0) {
@@ -54,7 +56,7 @@ export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
       <View>
         {evolutions.map((url, index) => {
           return (
-            <EvolutionCard evolutionUrl={url} pokemonUrl={url} key={index} />
+            <EvolutionCard pokemonUrl={url} evolutionUrl={url} key={index} />
           );
         })}
       </View>
