@@ -4,8 +4,8 @@ import React from 'react';
 import {getColorByType, getIconByType} from '../../utils/pokemon';
 import {RoundedIcon} from '../../components/RoundedIcon';
 import {getPokemonImageSRC} from '../../utils/image';
-import {Avatar} from '../../components/Avatar';
 import usePokemon from '../../hooks/pokemon';
+import {Avatar} from '../Avatar';
 
 export const ItemDivider = () => {
   return <View style={styles.divider} />;
