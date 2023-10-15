@@ -1,4 +1,4 @@
-import {StyleProp, StyleSheet, Text, TextStyle} from 'react-native';
+import {Dimensions, StyleProp, StyleSheet, Text, TextStyle} from 'react-native';
 import React from 'react';
 
 import theme from '../../styles/theme';
@@ -10,10 +10,24 @@ type HeadingProps = {
   children: React.ReactNode;
   customStyles?: StyleProp<TextStyle>;
 };
+const {width} = Dimensions.get('window');
+const pixelScreen = width < 1080; // You can adjust this threshold as needed.
+
+function getHeadingResponsiveFontSize(as: Keys) {
+  if (as === 'h1' && pixelScreen) {
+    styles[as].fontSize = 32;
+  }
+  return styles[as];
+}
 
 export const Heading = ({as, children, customStyles}: HeadingProps) => {
   return (
-    <Text style={[styles[as], styles.commonStyles, customStyles]}>
+    <Text
+      style={[
+        getHeadingResponsiveFontSize(as),
+        styles.commonStyles,
+        customStyles,
+      ]}>
       {children}
     </Text>
   );
