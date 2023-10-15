@@ -13,8 +13,7 @@ type Props = {
 export const Pokemons = ({
   handleOnPokemonPress: handleOnPokemonPress,
 }: Props) => {
-  const {pokemons, error, loading} = usePokemons();
-  console.log('🚀 ~ file: index.tsx:17 ~ loading:', loading);
+  const {pokemons, error} = usePokemons();
 
   const renderPokemons = () => {
     if (error) {
