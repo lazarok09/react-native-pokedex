@@ -1,7 +1,7 @@
 import {View, StyleSheet} from 'react-native';
 import React from 'react';
 
-import {horizontalScale, verticalScale} from '../../helpers/metric';
+import {horizontalScale, verticalScale} from '../../utils/metric';
 import ArrowRight from '../../assets/icons/arrow-right.svg';
 import {Avatar} from '../Avatar';
 
