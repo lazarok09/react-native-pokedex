@@ -1,12 +1,11 @@
+import {useCallback, useContext, useMemo} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
-import {useContext} from 'react';
 import React from 'react';
 
 import {PokemonContext} from '../../context/Pokemon/context';
 import {getEnglishFlavor} from '../../utils/general';
 import {getColorByType} from '../../utils/pokemon';
 import {PokemonInfoStatus} from '../PokemonInfo';
-import useEvolution from '../../hooks/evolution';
 import {EvolutionCard} from '../EvolutionCard';
 import usePokemon from '../../hooks/pokemon';
 import useSpecie from '../../hooks/specie';
@@ -18,7 +17,6 @@ export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
   const {setColor} = useContext(PokemonContext);
   const {pokemon, loading} = usePokemon(pokemonName);
   const {specie} = useSpecie(pokemon.name);
-  const {evolution} = useEvolution(pokemon.name);
 
   function getCurrentPokemonColor(): PokemonTypeColors {
     if (Object.keys(pokemon).length > 0) {
@@ -44,14 +42,17 @@ export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
       </View>
     </>
   );
-
-  const EVOLUTION = () => {
-    const evolutions = [
+  const evolutions = useMemo(
+    () => [
       pokemon?.sprites?.front_default,
       pokemon?.sprites?.back_default,
       pokemon?.sprites?.front_shiny,
       pokemon?.sprites?.back_default,
-    ];
+    ],
+    [pokemon],
+  );
+
+  const renderEvolution = useCallback(() => {
     return (
       <View>
         {evolutions.map((url, index) => {
@@ -61,13 +62,14 @@ export const InfoTab = ({pokemonName}: {pokemonName: string}) => {
         })}
       </View>
     );
-  };
+  }, [evolutions]);
+
   return (
     <View style={styles.infoArea}>
       <Tabs
         tabColor={getCurrentPokemonColor()}
         InfoChild={INFO}
-        EvolutionChild={EVOLUTION()}
+        EvolutionChild={renderEvolution()}
         MovesChild={<Text>Moves</Text>}
       />
     </View>
