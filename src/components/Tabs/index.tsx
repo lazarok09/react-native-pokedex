@@ -1,7 +1,7 @@
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Pressable} from 'react-native';
 import React, {useState} from 'react';
 
-import theme from '../../styles/theme';
+import * as Styled from './styles';
 
 type TABS = 'INFO' | 'EVOLUTION' | 'MOVES';
 
@@ -34,67 +34,26 @@ export const Tabs = ({
 
   return (
     <View>
-      <View style={styles.tabsContainer}>
+      <Styled.TabContainer>
         <Pressable onPress={() => setActiveTab('INFO')}>
-          <View style={styles.tabItemContainer}>
-            <Text
-              style={[
-                styles.text,
-                {backgroundColor: activeTab === 'INFO' ? tabColor : undefined},
-              ]}>
-              Info
-            </Text>
-          </View>
+          <Styled.TabItemContainer>
+            <Styled.TabText backgroundColor={tabColor}>Info</Styled.TabText>
+          </Styled.TabItemContainer>
         </Pressable>
         <Pressable onPress={() => setActiveTab('EVOLUTION')}>
-          <View style={styles.tabItemContainer}>
-            <Text
-              style={[
-                styles.text,
-
-                {
-                  backgroundColor:
-                    activeTab === 'EVOLUTION' ? tabColor : undefined,
-                },
-              ]}>
+          <Styled.TabItemContainer>
+            <Styled.TabText backgroundColor={tabColor}>
               Evolution
-            </Text>
-          </View>
+            </Styled.TabText>
+          </Styled.TabItemContainer>
         </Pressable>
         <Pressable onPress={() => setActiveTab('MOVES')}>
-          <View style={styles.tabItemContainer}>
-            <Text
-              style={[
-                styles.text,
-                {backgroundColor: activeTab === 'MOVES' ? tabColor : undefined},
-              ]}>
-              Moves
-            </Text>
-          </View>
+          <Styled.TabItemContainer>
+            <Styled.TabText backgroundColor={tabColor}>Moves</Styled.TabText>
+          </Styled.TabItemContainer>
         </Pressable>
-      </View>
+      </Styled.TabContainer>
       {switcher[activeTab]}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  tabsContainer: {
-    flexDirection: 'row',
-    gap: 20,
-    marginBottom: Number(theme.box.gaps.xxlarge.replace('px', '')) + 10,
-  },
-  tabItemContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  text: {
-    fontSize: 36,
-    color: '#FFFFFF',
-    paddingTop: 12,
-    paddingBottom: 12,
-    width: 250,
-    textAlign: 'center',
-    borderRadius: 34,
-  },
-});
