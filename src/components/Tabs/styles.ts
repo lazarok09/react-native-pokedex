@@ -22,7 +22,7 @@ export const TabText = styled.Text<{backgroundColor: PokemonTypeColors}>`
     padding-top: 12;
     padding-bottom: 12;
     width: 250;
-    text=align: center;
+    text-align: center;
     border-radius: 34;
     ${backgroundColor &&
     css`
