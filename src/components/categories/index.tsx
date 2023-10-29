@@ -1,7 +1,8 @@
+import {View, StyleSheet} from 'react-native';
 import React from 'react';
 
+import {moderateScale} from '../../utils/metric';
 import {ColorizedBox} from '../Box';
-import * as Styled from './styles';
 
 type CategoriesProps = {
   handleOnPressOut: () => void;
@@ -10,15 +11,15 @@ type CategoriesProps = {
 export const Categories = (props: CategoriesProps) => {
   const {handleOnPressOut, handleOnPokemonCategoryClick} = props;
   return (
-    <Styled.Wrapper>
-      <Styled.Item>
+    <View style={styles.wrapper}>
+      <View style={styles.item}>
         <ColorizedBox
           handleOnPressOut={handleOnPokemonCategoryClick}
           color="green"
           text="Pokémon"
         />
-      </Styled.Item>
-      <Styled.DoubleItems>
+      </View>
+      <View style={styles.doubleItems}>
         <ColorizedBox
           handleOnPressOut={handleOnPressOut}
           color="tomato"
@@ -29,8 +30,8 @@ export const Categories = (props: CategoriesProps) => {
           color="blue"
           text="Moves"
         />
-      </Styled.DoubleItems>
-      <Styled.DoubleItems>
+      </View>
+      <View style={styles.doubleItems}>
         <ColorizedBox
           handleOnPressOut={handleOnPressOut}
           color="yellow"
@@ -41,7 +42,20 @@ export const Categories = (props: CategoriesProps) => {
           color="purple"
           text="Favorite"
         />
-      </Styled.DoubleItems>
-    </Styled.Wrapper>
+      </View>
+    </View>
   );
 };
+const styles = StyleSheet.create({
+  wrapper: {
+    gap: moderateScale(20),
+  },
+  item: {
+    flexDirection: 'row',
+  },
+  doubleItems: {
+    flexDirection: 'row',
+    gap: moderateScale(20),
+    width: '100%',
+  },
+});
