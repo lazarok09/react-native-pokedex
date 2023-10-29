@@ -6,6 +6,7 @@ import {PokemonContext} from '../../context/Pokemon/context';
 import {getEnglishFlavor} from '../../utils/general';
 import {getColorByType} from '../../utils/pokemon';
 import {PokemonInfoStatus} from '../PokemonInfo';
+import {verticalScale} from '../../utils/metric';
 import {EvolutionCard} from '../EvolutionCard';
 import usePokemon from '../../hooks/pokemon';
 import useSpecie from '../../hooks/specie';
@@ -80,31 +81,32 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background,
     width: '100%',
     height: '100%',
-    borderTopLeftRadius: 60,
-    borderTopRightRadius: 60,
-    padding: 60,
+    borderTopLeftRadius: verticalScale(60),
+    borderTopRightRadius: verticalScale(60),
+    padding: verticalScale(60),
   },
   flavorArea: {
-    marginBottom: Number(theme.box.gaps.xxlarge.replace('px', '')),
+    marginBottom: verticalScale(42),
   },
   flavorText: {
     color: theme.colors.text_03,
-    fontSize: Number(theme.typography.sizes.large.replace('px', '')) + 3,
+    fontSize: verticalScale(29),
     fontWeight: '600',
   },
 
   battleConditionArea: {
-    marginTop: 34,
+    marginTop: verticalScale(34),
   },
   battleConditionHeading: {
-    fontSize: Number(theme.typography.sizes.xlarge.replace('px', '')),
+    fontSize: verticalScale(32),
+
     fontWeight: 'bold',
     color: theme.colors.text_01,
-    marginBottom: 26,
+    marginBottom: verticalScale(26),
   },
   battleConditionWeakTo: {
-    fontSize: Number(theme.typography.sizes.large.replace('px', '')),
+    fontSize: verticalScale(26),
     color: theme.colors.text_01,
-    marginBottom: 15,
+    marginBottom: verticalScale(15),
   },
 });

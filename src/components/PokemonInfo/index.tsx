@@ -2,6 +2,7 @@ import {View, StyleSheet} from 'react-native';
 import React from 'react';
 
 import {Label, Progress, StatusNumber} from '../Stats';
+import {verticalScale} from '../../utils/metric';
 
 type Props = {
   pokemonStatus: Stat[];
@@ -34,15 +35,15 @@ export const PokemonInfoStatus = ({pokemonStatus, color}: Props) => {
 const styles = StyleSheet.create({
   pokemonInfoContainer: {
     flexDirection: 'row',
-    gap: 14,
+    gap: verticalScale(14),
   },
   statusNumber: {
-    width: 60,
+    width: verticalScale(60),
   },
   progress: {
     flexDirection: 'row',
     alignItems: 'center',
 
-    gap: 24,
+    gap: verticalScale(24),
   },
 });

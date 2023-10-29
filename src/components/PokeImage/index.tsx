@@ -1,6 +1,8 @@
 import {View, Image, StyleSheet} from 'react-native';
 import React from 'react';
 
+import {verticalScale} from '../../utils/metric';
+
 export type PokeImageProps = {
   url: string;
 };
@@ -24,8 +26,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   picture: {
-    height: 490,
-    width: 490,
-    borderRadius: 200 / 2,
+    height: verticalScale(250),
+    width: verticalScale(250),
+    borderRadius: verticalScale(100),
   },
 });

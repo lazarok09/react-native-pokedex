@@ -2,6 +2,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {Pressable, Text} from 'react-native';
 import React, {useState} from 'react';
 
+import {verticalScale} from '../../utils/metric';
 import theme from '../../styles/theme';
 
 export const HeartPressableIcon = () => {
@@ -15,7 +16,7 @@ export const HeartPressableIcon = () => {
       <Text>
         <Icon
           name={checked ? 'heart-outline' : 'heart'}
-          size={60}
+          size={verticalScale(60)}
           color={checked ? theme.colors.text_01 : 'red'}
         />
       </Text>

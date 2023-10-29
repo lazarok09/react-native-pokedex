@@ -1,7 +1,7 @@
-import {View, Pressable} from 'react-native';
+import {View, Pressable, StyleSheet, Text} from 'react-native';
 import React, {useState} from 'react';
 
-import * as Styled from './styles';
+import {verticalScale} from '../../utils/metric';
 
 type TABS = 'INFO' | 'EVOLUTION' | 'MOVES';
 
@@ -34,26 +34,51 @@ export const Tabs = ({
 
   return (
     <View>
-      <Styled.TabContainer>
+      <View style={styles.tabContainer}>
         <Pressable onPress={() => setActiveTab('INFO')}>
-          <Styled.TabItemContainer>
-            <Styled.TabText backgroundColor={tabColor}>Info</Styled.TabText>
-          </Styled.TabItemContainer>
+          <View style={styles.tabItemContainer}>
+            <Text style={[styles.tabText, {backgroundColor: tabColor}]}>
+              Info
+            </Text>
+          </View>
         </Pressable>
         <Pressable onPress={() => setActiveTab('EVOLUTION')}>
-          <Styled.TabItemContainer>
-            <Styled.TabText backgroundColor={tabColor}>
+          <View style={styles.tabItemContainer}>
+            <Text style={[styles.tabText, {backgroundColor: tabColor}]}>
               Evolution
-            </Styled.TabText>
-          </Styled.TabItemContainer>
+            </Text>
+          </View>
         </Pressable>
         <Pressable onPress={() => setActiveTab('MOVES')}>
-          <Styled.TabItemContainer>
-            <Styled.TabText backgroundColor={tabColor}>Moves</Styled.TabText>
-          </Styled.TabItemContainer>
+          <View style={styles.tabItemContainer}>
+            <Text style={[styles.tabText, {backgroundColor: tabColor}]}>
+              Moves
+            </Text>
+          </View>
         </Pressable>
-      </Styled.TabContainer>
+      </View>
       {switcher[activeTab]}
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  tabContainer: {
+    flexDirection: 'row',
+    gap: 20,
+    marginBottom: verticalScale(42),
+  },
+  tabItemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  tabText: {
+    fontSize: 36,
+    color: '#ffffff',
+    paddingTop: 12,
+    paddingBottom: 12,
+    width: 250,
+    textAlign: 'center',
+    borderRadius: 34,
+  },
+});
