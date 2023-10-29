@@ -1,7 +1,7 @@
 import {View, Pressable, StyleSheet, Text} from 'react-native';
 import React, {useState} from 'react';
 
-import {verticalScale} from '../../utils/metric';
+import {horizontalScale, verticalScale} from '../../utils/metric';
 
 type TABS = 'INFO' | 'EVOLUTION' | 'MOVES';
 
@@ -35,26 +35,26 @@ export const Tabs = ({
   return (
     <View>
       <View style={styles.tabContainer}>
-        <Pressable onPress={() => setActiveTab('INFO')}>
-          <View style={styles.tabItemContainer}>
-            <Text style={[styles.tabText, {backgroundColor: tabColor}]}>
-              Info
-            </Text>
-          </View>
+        <Pressable
+          style={styles.tabItemContainer}
+          onPress={() => setActiveTab('INFO')}>
+          <Text style={[styles.tabText, {backgroundColor: tabColor}]}>
+            Info
+          </Text>
         </Pressable>
-        <Pressable onPress={() => setActiveTab('EVOLUTION')}>
-          <View style={styles.tabItemContainer}>
-            <Text style={[styles.tabText, {backgroundColor: tabColor}]}>
-              Evolution
-            </Text>
-          </View>
+        <Pressable
+          style={styles.tabItemContainer}
+          onPress={() => setActiveTab('EVOLUTION')}>
+          <Text style={[styles.tabText, {backgroundColor: tabColor}]}>
+            Evolution
+          </Text>
         </Pressable>
-        <Pressable onPress={() => setActiveTab('MOVES')}>
-          <View style={styles.tabItemContainer}>
-            <Text style={[styles.tabText, {backgroundColor: tabColor}]}>
-              Moves
-            </Text>
-          </View>
+        <Pressable
+          style={styles.tabItemContainer}
+          onPress={() => setActiveTab('MOVES')}>
+          <Text style={[styles.tabText, {backgroundColor: tabColor}]}>
+            Moves
+          </Text>
         </Pressable>
       </View>
       {switcher[activeTab]}
@@ -71,13 +71,14 @@ const styles = StyleSheet.create({
   tabItemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
   },
   tabText: {
-    fontSize: 36,
+    flex: 1,
+    fontSize: verticalScale(16),
     color: '#ffffff',
-    paddingTop: 12,
-    paddingBottom: 12,
-    width: 250,
+    paddingTop: verticalScale(12),
+    paddingBottom: verticalScale(12),
     textAlign: 'center',
     borderRadius: 34,
   },
