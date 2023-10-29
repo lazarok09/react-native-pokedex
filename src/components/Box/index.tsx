@@ -1,6 +1,7 @@
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-import * as Styled from './styles';
+import {moderateScale} from '../../utils/metric';
 
 type Colors = 'green' | 'tomato' | 'blue' | 'yellow' | 'purple';
 
@@ -24,8 +25,32 @@ type BoxProps = {
 
 export const ColorizedBox = ({text, color, handleOnPressOut}: BoxProps) => {
   return (
-    <Styled.Box onPress={handleOnPressOut} backgroundColor={COLORS[color]}>
-      <Styled.Title>{text}</Styled.Title>
-    </Styled.Box>
+    <TouchableOpacity
+      style={[styles.box, {backgroundColor: COLORS[color]}]}
+      onPress={handleOnPressOut}>
+      <View style={styles.titleContainer}>
+        <Text style={[styles.title]}>{text}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  box: {
+    flex: 1,
+    minHeight: moderateScale(150),
+    maxHeight: moderateScale(200),
+    borderRadius: moderateScale(20),
+  },
+  titleContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  title: {
+    fontSize: moderateScale(42),
+    fontWeight: '900',
+    font: "'Roboto'",
+    color: '#fefefe',
+    padding: moderateScale(32),
+  },
+});

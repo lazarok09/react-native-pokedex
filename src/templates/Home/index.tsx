@@ -9,6 +9,10 @@ import * as Styled from './styles';
 type Props = {
   navigation: HomeScreenProps['navigation'];
 };
+enum HomePage {
+  Title = 'What are you looking for ?',
+}
+
 export const Home = (props: Props) => {
   const {navigation} = props;
 
@@ -23,7 +27,7 @@ export const Home = (props: Props) => {
 
   return (
     <Styled.Wrapper>
-      <Heading as="h1">What are you looking for ?</Heading>
+      <Heading as="h1">{HomePage.Title}</Heading>
       <HomeSearchBar onSearchSubmit={onSearchSubmit} />
       <Categories
         handleOnPressOut={() => {}}
