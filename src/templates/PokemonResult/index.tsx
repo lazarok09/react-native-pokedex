@@ -1,4 +1,5 @@
 import {StyleSheet, SafeAreaView, View, StatusBar} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import React, {useContext} from 'react';
 
 import {HeartPressableIcon} from '../../components/HeartPressableIcon';
@@ -6,7 +7,6 @@ import {PokemonContext} from '../../context/Pokemon/context';
 import {BackButton} from '../../components/BackButton';
 import {Pokemon} from '../../containers/Pokemon';
 import theme from '../../styles/theme';
-import * as Styled from './styles';
 
 type PokemonResultProps = {
   name: string;
@@ -16,7 +16,7 @@ export const PokemonResult = ({name, handleBackButton}: PokemonResultProps) => {
   const {color} = useContext(PokemonContext);
 
   return (
-    <Styled.Wrapper backgroundColor={color}>
+    <ScrollView style={[styles.wrapper, {backgroundColor: color}]}>
       <StatusBar backgroundColor={color} />
       <SafeAreaView>
         <View style={styles.header}>
@@ -25,11 +25,15 @@ export const PokemonResult = ({name, handleBackButton}: PokemonResultProps) => {
         </View>
         <Pokemon name={name} />
       </SafeAreaView>
-    </Styled.Wrapper>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    color: '#FFFF',
+  },
   header: {
     justifyContent: 'space-between',
     flexDirection: 'row',
